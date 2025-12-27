@@ -383,19 +383,19 @@
 							mysqli_query($connect, "DELETE FROM commands WHERE id= {$row['id']}");
 						}
 					}
-					/* 
-						Wyślij wiadomość: 
-						type - 1
-						CLID- clid
-						command - wiadomość
-						Edytuj kanał:
-						type - 2
-						CID-cid
-						channel_desc - opis kanału
-						
-						
-						
-					*/
+				/* 
+					Send message: 
+					type - 1
+					CLID- clid
+					command - message
+					Edit channel:
+					type - 2
+					CID-cid
+					channel_desc - channel description
+					
+					
+					
+				*/
 					
 					$instance = count($config[$instance_number]['functions']);
 					for($i=0; $i<$instance; $i++)

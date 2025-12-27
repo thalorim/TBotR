@@ -107,7 +107,7 @@ $config['function']['pgroup'] = Array(
 	'info' => Array(
 		1 => Array(
 			'group' => 8, //group id
-			'message' => "Pamiętaj aby zarejestrować się (rejestracja dostępna w strefie pomocy)."  //message
+			'message' => "Remember to register (registration available in help zone)."  //message
 		)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 20, 'seconds' => 0), //interval
@@ -119,7 +119,7 @@ $config['function']['banlist'] = Array(
 	'enable' => true,
 	'channel_name_enable' => true, //enable/disable channel name
 	'channel' => 111,  //channel
-	'channel_name' => "[cspacer]● Lista banów [COUNT]●",  //channel name, if enable  [COUNT] - ban count
+	'channel_name' => "[cspacer]● Ban list [COUNT]●",  //channel name, if enable  [COUNT] - ban count
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 30, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -128,7 +128,7 @@ $config['function']['banlist'] = Array(
 $config['function']['channelscount'] = Array(
 	'enable' => true,
 	'channel' => 648,  //channel
-	'channelname' => "[cspacer]● Kanałów ogółem: [COUNT] ●",  //channel name
+	'channelname' => "[cspacer]● Total channels: [COUNT] ●",  //channel name
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 2, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -137,7 +137,7 @@ $config['function']['channelscount'] = Array(
 $config['function']['visitors'] = Array(
 	'enable' => true,
 	'channel' => 148,  //channel
-	'channelname' => "[cspacer0]●Odwiedzin: [COUNT] (od resetu)●",  //channel name
+	'channelname' => "[cspacer0]●Visits: [COUNT] (since reset)●",  //channel name
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -146,7 +146,7 @@ $config['function']['visitors'] = Array(
 $config['function']['packetloss'] = Array(
 	'enable' => false,
 	'channel' => 1101,  //channel
-	'channelname' => "[cspacer0]●Średnia utrata pakietów: [COUNT]% ●",  //channel name, [COUNT] - average packet loss
+	'channelname' => "[cspacer0]●Average packet loss: [COUNT]% ●",  //channel name, [COUNT] - average packet loss
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -155,7 +155,7 @@ $config['function']['packetloss'] = Array(
 $config['function']['ping'] = Array(
 	'enable' => false,
 	'channel' => 992,  //channel
-	'channelname' => "[cspacer0]●Średni ping: [COUNT] ms●",  //channel name, [COUNT] - average ping
+	'channelname' => "[cspacer0]●Average ping: [COUNT] ms●",  //channel name, [COUNT] - average ping
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -164,7 +164,7 @@ $config['function']['ping'] = Array(
 $config['function']['uptime'] = Array(
 	'enable' => false,
 	'channel' => 992,  //channel
-	'channelname' => "[cspacer0]●Czas działania: [COUNT]●",  //channel name, [COUNT] - uptime
+	'channelname' => "[cspacer0]●Uptime: [COUNT]●",  //channel name, [COUNT] - uptime
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -233,13 +233,13 @@ $config['function']['channelzoneclient'] = Array(
 	'info' => Array(
 		1 => Array(
 			'channel' => 1214,  //channel id
-			'channelname' => "[cspacer0]Klientów: [count]",  //channel name, [count] - count clients
+			'channelname' => "[cspacer0]Clients: [count]",  //channel name, [count] - count clients
 			'channelzonestart' => 265,  //channel id where zone started
 			'channelzonestop' => 1212  //channel id where zone ended
 		),
 		2 => Array(
 			'channel' => 1213,
-			'channelname' => "[cspacer1]Klientów: [count]",  
+			'channelname' => "[cspacer1]Clients: [count]",  
 			'channelzonestart' => 35,
 			'channelzonestop' => 307
 		),
@@ -334,9 +334,9 @@ $config['function']['privatechannel'] = Array(
 	'admingroup' => 5,  //admin group
 	'subchannels' => 2, //subchannels count
 	'channeltopic' => "#free", //free channel topic
-	'messageafter' => "Pamiętaj o zmianie hasła",  //message after 
-	'channelname' => "Kanał prywatny - [NICK]",  //channel name
-	'subchannelname' => "Podkanał",  //subchannel name
+	'messageafter' => "Remember to change password",  //message after 
+	'channelname' => "Private channel - [NICK]",  //channel name
+	'subchannelname' => "Subchannel",  //subchannel name
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -345,16 +345,16 @@ $config['function']['privatechannel'] = Array(
 $config['function']['checkchannels'] = Array(
 	'enable' => true,
 	'channelzone' => 265,  //channel zone
-	'channelzonename' => "[cspacer]Kanałów prywatnych: [COUNT]",  //channel zone name, [COUNT] - count private channels
+	'channelzonename' => "[cspacer]Private channels: [COUNT]",  //channel zone name, [COUNT] - count private channels
 	'channeltopic' => "#free", //topic name in free channels
 	'freechannelscount' => 5,  //minimum number of free channels
 	'channelslist' => 265,  //channel id where are list free and busy channels
-	'channelname' => "[NUMBER]. Kanał prywatny - wolny",  //free channel name
+	'channelname' => "[NUMBER]. Private channel - free",  //free channel name
 	'intervaldelete' => 7, //days after which the channel will be deleted
 	'setdate' => true, //set curent date if someone is on channel
 	'checkname' => true, //check channels name
-	'block' => "chuj,kurwa,szmata,huj,chój,hój,kórwa,zajebać,zajebac,zapierdalać,zapierdalac,zapierdolić,zapierdolic,zjeb,zajebać,zajebac,wpierdol,wpierdalać,wpierdalac,wkurwienie,wkurwiony,wychujać,wychujac,wykurwiście,wykurwiscie,ujebać,ujebac,ujebany,upierdolony,suka,sóka,sukinsyn,sókinsyn,sukinkot,sókinkot,spierdolić,spierdolic,spierdalać,spierdalac,skurwysyństwo,skurwysynstwo,skurwysynowanie,skurwysynek,zkurwysyn,skurwiel,zkurwiel,skurwiały,surwialy,zkurwiały,zkurwialy,przyjebać,przyjebac,przerżnąć,przerznac,przejebane,przechuj,przehuj,porucha,popierdolony,pojeb,pojebać,pojebac,pojebany,podjebac,podjebać,pizda,pizdeczka,pierdolony,pierdolnik,pierdolnięty,pierdolniety,opierdalać,opierdalac,odpierdalać,odpierdalac,matkojebca,kozojebca,kurrewka,kurewski,kurewsko,kurwić,kurwic,kutas,jebać,jebac,jebanie,jebanko,jebany,jebaństwo,jebnąć,jebnac,dojebać,dojebac,dopierdolić,dopierdolic,dopierdoloenie,dziwka,dzifka,chujnia,hujnia,chujowy,hujowy,cwel,cfel,cipa,cipka,cipeczka,TeamSpeakUser,[RooT],[HSA]", 
-	'message' => "Zmień nazwę kanału",
+	'block' => "fuck,shit,ass,bitch,damn,crap,piss,dick,cock,pussy,TeamSpeakUser,[RooT],[HSA]", 
+	'message' => "Change channel name",
 	'intervalname' => Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0),  //interval for checking channel names
 	'datazeroname' => '1970-01-01 00:00:00',
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 2),  //interval
@@ -421,15 +421,15 @@ $config['function']['timechannel'] = Array(
 	'info' => Array(
 		1 => Array(
 			'channel' => 992,
-			'channelnameon' => "Działa",  //channel name on
-			'channelnameoff' => "Nie działa",  //channel name off
+			'channelnameon' => "Working",  //channel name on
+			'channelnameoff' => "Not working",  //channel name off
 			'timeon' => "9:54",
 			'timeoff' => "19:51"
 		),
 		2 => Array(
 			'channel' => 993,
-			'channelnameon' => "Działa2", 
-			'channelnameoff' => "Nie działa2",
+			'channelnameon' => "Working2", 
+			'channelnameoff' => "Not working2",
 			'timeon' => "8:00",
 			'timeoff' => "9:53"
 		)
@@ -451,7 +451,7 @@ $config['function']['imieniny'] = Array(
 $config['function']['monthrecord'] = Array(
 	'enable' => true,
 	'channel' => 857,//channel
-	'channelname' => "[cspacer]● Rekord miesiąca: [RECORD] ●",  //channel name
+	'channelname' => "[cspacer]● Month record: [RECORD] ●",  //channel name
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -490,7 +490,7 @@ $config['function']['twitch'] = Array(
 $config['function']['welcomemessage'] = Array(
 	'enable' => true,
 	'mode' => 1,  //1 - poke, 2 - send msg
-	'message' => "		[b]Teraz jest [online]/[max] osób![/b]\n Od teraz możesz zostawić wiadomość do administracji, jeśli aktualnie nie znajduje się na serwerze (na kanale pomocy)",  //channel name, [online] - clients online, [max] - server slots
+	'message' => "		[b]Currently [online]/[max] people online![/b]\n You can now leave a message to admins if they are not currently on the server (on help channel)",  //channel name, [online] - clients online, [max] - server slots
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 2), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -502,7 +502,7 @@ $config['function']['pokeonchannel'] = Array(
 		1 => Array(
 			'channel' => 33,
 			'pokegroup' => Array(6,30),
-			'message' => "[NICK] ma skargę"
+			'message' => "[NICK] has a complaint"
 		)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 30), //interval
@@ -520,7 +520,7 @@ $config['function']['vpndetection'] = Array(
 // advertisement
 $config['function']['advertisement'] = Array(
 	'enable' => false,
-	'message' => "Wiadomość [online]/[max]",  // [online] - client count, [max] - max clients
+	'message' => "Message [online]/[max]",  // [online] - client count, [max] - max clients
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -537,7 +537,7 @@ $config['function']['botinfo'] = Array(
 $config['function']['ddosdetection'] = Array(
 	'enable' => true,
 	'packetloss' => 10, 
-	'message' => "[b]Wykryto atak Ddos[/b]",
+	'message' => "[b]DDoS attack detected[/b]",
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 30), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -546,7 +546,7 @@ $config['function']['ddosdetection'] = Array(
 $config['function']['antyrecording'] = Array(
 	'enable' => true,
 	'mode' => 2,  // 1 - poke, 2 - kick 
-	'message' => "[b]Wyłącz nagrywanie[/b]",
+	'message' => "[b]Turn off recording[/b]",
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 10), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -554,8 +554,8 @@ $config['function']['antyrecording'] = Array(
 // Nick control
 $config['function']['nickcontrol'] = Array(
 	'enable' => true,
-	'block' => "chuj,kurwa,szmata,huj,chój,hój,kórwa,zajebać,zajebac,zapierdalać,zapierdalac,zapierdolić,zapierdolic,zjeb,zajebać,zajebac,wpierdol,wpierdalać,wpierdalac,wkurwienie,wkurwiony,wychujać,wychujac,wykurwiście,wykurwiscie,ujebać,ujebac,ujebany,upierdolony,suka,sóka,sukinsyn,sókinsyn,sukinkot,sókinkot,spierdolić,spierdolic,spierdalać,spierdalac,skurwysyństwo,skurwysynstwo,skurwysynowanie,skurwysynek,zkurwysyn,skurwiel,zkurwiel,skurwiały,surwialy,zkurwiały,zkurwialy,przyjebać,przyjebac,przerżnąć,przerznac,przejebane,przechuj,przehuj,porucha,popierdolony,pojeb,pojebać,pojebac,pojebany,podjebac,podjebać,pizda,pizdeczka,pierdolony,pierdolnik,pierdolnięty,pierdolniety,opierdalać,opierdalac,odpierdalać,odpierdalac,matkojebca,kozojebca,kurrewka,kurewski,kurewsko,kurwić,kurwic,kutas,jebać,jebac,jebanie,jebanko,jebany,jebaństwo,jebnąć,jebnac,dojebać,dojebac,dopierdolić,dopierdolic,dopierdoloenie,dziwka,dzifka,chujnia,hujnia,chujowy,hujowy,cwel,cfel,cipa,cipka,cipeczka,TeamSpeakUser,[RooT],[HSA]", 
-	'message' => "Zmień nick",
+	'block' => "fuck,shit,ass,bitch,damn,crap,piss,dick,cock,pussy,TeamSpeakUser,[RooT],[HSA]", 
+	'message' => "Change nickname",
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
@@ -603,9 +603,9 @@ $config['function']['helpchannel'] = Array(
 	'admingroup' => Array(6, 30),  //admins group
 	'channeladmingroups' => Array(5,10),
 	'bangroup' => 18,
-	'commandlist' => "!komendy", //comand for commands list
-	'grouplist' => "!grupy",  //command for group list
-	'adminpokemessage' => "[NICK] potrzebuje pomocy!",  //admin poke message
+	'commandlist' => "!commands", //comand for commands list
+	'grouplist' => "!groups",  //command for group list
+	'adminpokemessage' => "[NICK] needs help!",  //admin poke message
 	'needgroupall' => Array(14,15),  //all the necessary groups to use bot
 	'ignoredonchannel' => Array(191,292),  //doesn't poke administrators on the channels
 	'profilelinkenable' => true,
@@ -623,7 +623,7 @@ $config['function']['helpchannel'] = Array(
 	),
 	'servergroup' => Array(19,20,21,22,23,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,88,83),  //server group 
 	'maxservergroup' => 6,  //max server group
-	'channeldesctopic' => "[center][size=15][b]Komendy[/b][/size][/center]",  //channel desc topic
+	'channeldesctopic' => "[center][size=15][b]Commands[/b][/size][/center]",  //channel desc topic
 	'msgtoadminenable' => true, //if core 3 i enabled
 	'msgtoadminchannel' => 17, //if core 3 i enabled
 	'msgtoadminmax' => 12,
@@ -632,43 +632,43 @@ $config['function']['helpchannel'] = Array(
 	//new commands
 	'info' => Array(
 		1 => Array(
-	'command' => "!poziomy",  //command
-	'message' => "\n[b]	Spis poziomów:[/b]\n	1 poziom - 1 godzina  
-	2 poziom - 2 godziny 
-	3 poziom - 4 godziny 
-	4 poziom - 8 godziny 
-	5 poziom - 12 godziny 
-	6 poziom - 18 godziny 
-	7 poziom - 24 godziny (1 dzień) 
-	8 poziom - 48 godziny (2 dni) 
-	9 poziom - 72 godziny (3 dni) 
-	10 poziom - 120 godziny (5 dni) 
-	11 poziom - 168 godziny (7 dni) 
-	12 poziom - 216 godziny (9 dni) 
-	13 poziom - 264 godziny (11 dni) 
-	14 poziom - 312 godziny (13 dni) 
-	15 poziom - 360 godziny (15 dni) 
-	16 poziom - 432 godziny (18 dni) 
-	17 poziom - 504 godziny (21 dni) 
-	18 poziom - 576 godziny (24 dni) 
-	19 poziom - 648 godziny (27 dni) 
-	20 poziom - 720 godziny (30 dni) 
-	21 poziom - 792 godziny (33 dni) 
-	22 poziom - 864 godziny (36 dni) 
-	23 poziom - 936 godziny (39 dni) 
-	24 poziom - 1008 godziny (42 dni) 
-	25 poziom - 1080 godziny (45 dni) 
-	26 poziom - 1200 godziny (50 dni) 
-	27 poziom - 1320 godziny (55 dni) 
-	28 poziom - 1440 godziny (60 dni) 
-	29 poziom - 1800 godziny (75 dni) 
-	30 poziom - 2160 godziny (90 dni)",  //description
-	'desc' => "lista poziomów"
+	'command' => "!levels",  //command
+	'message' => "\n[b]	Levels list:[/b]\n	1 level - 1 hour  
+	2 level - 2 hours 
+	3 level - 4 hours 
+	4 level - 8 hours 
+	5 level - 12 hours 
+	6 level - 18 hours 
+	7 level - 24 hours (1 day) 
+	8 level - 48 hours (2 days) 
+	9 level - 72 hours (3 days) 
+	10 level - 120 hours (5 days) 
+	11 level - 168 hours (7 days) 
+	12 level - 216 hours (9 days) 
+	13 level - 264 hours (11 days) 
+	14 level - 312 hours (13 days) 
+	15 level - 360 hours (15 days) 
+	16 level - 432 hours (18 days) 
+	17 level - 504 hours (21 days) 
+	18 level - 576 hours (24 days) 
+	19 level - 648 hours (27 days) 
+	20 level - 720 hours (30 days) 
+	21 level - 792 hours (33 days) 
+	22 level - 864 hours (36 days) 
+	23 level - 936 hours (39 days) 
+	24 level - 1008 hours (42 days) 
+	25 level - 1080 hours (45 days) 
+	26 level - 1200 hours (50 days) 
+	27 level - 1320 hours (55 days) 
+	28 level - 1440 hours (60 days) 
+	29 level - 1800 hours (75 days) 
+	30 level - 2160 hours (90 days)",  //description
+	'desc' => "levels list"
 	),
 		2 => Array(
 			'command' => "!vip",
-			'message' => "[b]Aby kupić rangę lub kanał VIP, udaj się na [url=http://xtrust.pl]xtrust.pl[/url][/b]",
-			'desc' => "informacje o VIP"
+			'message' => "[b]To buy VIP rank or channel, go to [url=http://xtrust.pl]xtrust.pl[/url][/b]",
+			'desc' => "VIP information"
 		),
 	),
 	'datazero' => '1970-01-01 00:00:00',  //datazero

@@ -172,7 +172,7 @@ $question = "CREATE TABLE `event_karaoke` (
 							}
 							else
 							{
-								$tsAdmin -> sendMessage(2, $config[6]['bot']['channel'], "[b]Nie znaleziono użytkownika[/b]");
+								$tsAdmin -> sendMessage(2, $config[6]['bot']['channel'], "[b]User not found[/b]");
 							}
 						}
 					}
@@ -189,7 +189,7 @@ $question = "CREATE TABLE `event_karaoke` (
 		else if(strpos(strtoupper($msg), strtoupper("!del db")) !== false && isAdmin($message['data']['invokerid']))
 		{
 			mysqli_query($connect, "DROP TABLE event_karaoke");
-			$tsAdmin -> sendMessage(2, $config[6]['bot']['channel'], "[b]Usunięto bazę[/b]");				
+			$tsAdmin -> sendMessage(2, $config[6]['bot']['channel'], "[b]Database deleted[/b]");				
 		}
 			
 	}

@@ -3,7 +3,7 @@ $config['control']['enable'] = true;
 $config['control']['speed'] = 60;
 $config['control']['max_ram'] = 100;
 ////////////////////////////////////////////
-////////////////NIE ZMIENIAJ///////////////
+////////////////DO NOT CHANGE///////////////
 ////////////////////////////////////////////
 $config['bot']['loop']['interval']=Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0);
 $config['bot']['loop']['datazero']= '1970-01-01 00:00:00';
@@ -18,63 +18,63 @@ $config[1]['server']['defaultgroup'] = 8;
 ////////////////////////////////////////////
 /////////////////LNGUAGE////////////////////
 ////////////////////////////////////////////
-$config['bot']['laguage'] = "pl";  //język
+$config['bot']['laguage'] = "en";  //language
 ////////////////////////////////////////////
 /////////////FIRST INSTANCE/////////////////
 ////////////////////////////////////////////
 $config[1]['enable'] = true; 
 
-$config[1]['server']['ip'] = '127.0.0.1'; //ip serwera
-$config[1]['server']['port'] = 9987; //port serwera
-$config[1]['server']['queryport'] = 10011; //port server query
-$config[1]['query']['login'] = 'serveradmin'; //nazwa server query
-$config[1]['query']['password'] = ''; //hasło server query
-$config[1]['bot']['name'] = "#1"; //nazwa bota
-$config[1]['bot']['channel'] =  28; //domyślny kanał bota
-$config[1]['bot']['speed'] = 1; //intertwał bota
+$config[1]['server']['ip'] = '127.0.0.1'; //server ip
+$config[1]['server']['port'] = 9987; //server port
+$config[1]['server']['queryport'] = 10011; //server query port
+$config[1]['query']['login'] = 'serveradmin'; //server query username
+$config[1]['query']['password'] = ''; //server query password
+$config[1]['bot']['name'] = "#1"; //bot name
+$config[1]['bot']['channel'] =  28; //bot default channel
+$config[1]['bot']['speed'] = 1; //bot interval
 
 $config[1]['functions'] = Array('day', 'hour','useronline' ,'register' ,'recordonline' ,'afk' ,'pgroup' ,'banlist' ,'channelscount' ,'visitors', 'packetloss', 'ping', 'uptime', 'generatebanner', 'channelzoneclient', 'adminslist', 'timeleft');
 
-		// Day // Dzień
-//Funkcja generuje datę w nazwie kanału
+		// Day
+//Function generates date in channel name
  $config['function']['day'] = Array(
 	'enable' => true,
-	'channel' => 1096,  //id kanału
-	'channelname' => "[cspacer0]● [DAY].[MONTH].[YEAR] ●",  //nazwa kanału, [DAY], [MONTH], [YEAR]
-	'interval' => Array('days' => 0, 'hours' => 1, 'minutes' => 0, 'seconds' => 0),  //interwał
+	'channel' => 1096,  //channel id
+	'channelname' => "[cspacer0]● [DAY].[MONTH].[YEAR] ●",  //channel name, [DAY], [MONTH], [YEAR]
+	'interval' => Array('days' => 0, 'hours' => 1, 'minutes' => 0, 'seconds' => 0),  //interval
 	'datazero' => '1970-01-01 00:00:00',
  );
 
-		// Hour // Godzina
-//Funkcja generuje godzinę w nazwie kanału
+		// Hour
+//Function generates hour in channel name
 $config['function']['hour'] = Array(
 	'enable' => true,
-	'channel' => 9,  //id kanału
-	'channelname' => "[cspacer0]● Godzina: [HOUR]:[MINUTES] ●",  //nazwa kanału, [HOUR],[MINUTES]
+	'channel' => 9,  //channel id
+	'channelname' => "[cspacer0]● Time: [HOUR]:[MINUTES] ●",  //channel name, [HOUR],[MINUTES]
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 30), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// User online //  Użytkowników online
-//Funkcja generuje liczbę użytkowników w nazwie kanału
+		// User online
+//Function generates number of users online in channel name
 $config['function']['useronline'] = Array(	
 	'enable' => true,
-	'channel'=> 8,  //id kanału
-	'channelname' => "[cspacer]● Online: [ONLINE] ([%]%)●",  //nazwa kanłu  [ONLINE] - użytkowników online, [%] - procentowe zapełnienie serwera
+	'channel'=> 8,  //channel id
+	'channelname' => "[cspacer]● Online: [ONLINE] ([%]%)●",  //channel name  [ONLINE] - users online, [%] - server usage percentage
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Register //  Rejestracja
-//Funkcja służy do nadawanie rangi rejestracyjnej po wejściu na oreślony kanał
+		// Register
+//Function assigns registration rank after entering specified channel
 $config['function']['register'] = Array(
 	'enable' => true,
-	'allgroup' => Array(14,15,87),	//wszystkie grupy	
-	'channeldelgroup' => 1061,  //id kanału na którym zostaną usunięte rangi rejestracyjne
+	'allgroup' => Array(14,15,87),	//all groups	
+	'channeldelgroup' => 1061,  //channel id where registration ranks will be removed
 	'info' => Array(
 		1 => Array(
-			'group' => 14,  //id grupy
-			'channel' => 90  //id kanału
+			'group' => 14,  //group id
+			'channel' => 90  //channel id
 		),
 		2 => Array(
 			'group' => 15,
@@ -89,117 +89,117 @@ $config['function']['register'] = Array(
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Rekord online //  Rekord online
-//Funkcja wyświetla rekord użytkowników online w nazwie kanału
+		// Record online
+//Function displays record number of users online in channel name
 $config['function']['recordonline'] = Array(
 	'enable' => true,
-	'channel' => 11, //id kanału
-	'channelname' => "[cspacer]●Rekord onlnie: [RECORD] ●",  //nazwa kanału
+	'channel' => 11, //channel id
+	'channelname' => "[cspacer]●Record online: [RECORD] ●",  //channel name
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// AFK //
-//Funkcja zarządza użytkownikami afk
+		// AFK
+//Function manages AFK users
 $config['function']['afk'] = Array(
 	'enable' => false,
-	'mode' => 2, //1 - przenieś na kanał; 2 - nadaj range,
-	'idlechannel' => 677, //id kanału, jeśli mode = 1
-	'afkgroup' => 89, //id grupy afk, jeśli mode = 2
-	'idletime' => 30,  //Czas po którym użytkownik zostanie przeniesiony, jeśli mode = 2 
+	'mode' => 2, //1 - move to channel; 2 - assign rank,
+	'idlechannel' => 677, //channel id, if mode = 1
+	'afkgroup' => 89, //afk group id, if mode = 2
+	'idletime' => 30,  //Time after which user will be moved, if mode = 2 
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 2), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Poke group //  Zaczepianie grup
-//Funkcja zaczepia wybrane grupy co określony czas
+		// Poke group
+//Function pokes selected groups at specified intervals
 $config['function']['pgroup'] = Array(
 	'enable' => true,
 	'info' => Array(
 		1 => Array(
-			'group' => 8, //id grupy
-			'message' => "Pamiętaj aby zarejestrować się (rejestracja dostępna w strefie pomocy)."  //wiadomość
+			'group' => 8, //group id
+			'message' => "Remember to register (registration available in help zone)."  //message
 		)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 20, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Ban list //  Lista banów
-//Funkcja generuje w opisie kanału liste banów
+		// Ban list
+//Function generates ban list in channel description
 $config['function']['banlist'] = Array(
 	'enable' => true,
-	'channel_name_enable' => true, //generowani nazwy kanału
-	'channel' => 111,  //id kanału
-	'channel_name' => "[cspacer]● Lista banów [COUNT]●",  //nazwa kanału, jeśli jest włączona  [COUNT] - liczba banów
+	'channel_name_enable' => true, //enable channel name generation
+	'channel' => 111,  //channel id
+	'channel_name' => "[cspacer]● Ban list [COUNT]●",  //channel name, if enabled  [COUNT] - number of bans
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 30, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// channels count //  Liczba kanałów
-//Funkcja generuje liczbę kanałów w nazwie kanału
+		// channels count
+//Function generates number of channels in channel name
 $config['function']['channelscount'] = Array(
 	'enable' => true,
-	'channel' => 648,  //id kanału
-	'channelname' => "[cspacer]● Kanałów ogółem: [COUNT] ●",  //nazwa kanału, [COUNT] - liczba kanałów
+	'channel' => 648,  //channel id
+	'channelname' => "[cspacer]● Total channels: [COUNT] ●",  //channel name, [COUNT] - number of channels
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 2, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Visitors //  Wizyt
-//Funkcja generuje liczbę odwiedzin w nazwie kanału
+		// Visitors
+//Function generates number of visits in channel name
 $config['function']['visitors'] = Array(
 	'enable' => true,
-	'channel' => 148,  //id kanału
-	'channelname' => "[cspacer0]●Odwiedzin: [COUNT] (od resetu)●",  //nazwa kanału, [COUNT] - liczba odwiedziń
+	'channel' => 148,  //channel id
+	'channelname' => "[cspacer0]●Visits: [COUNT] (since reset)●",  //channel name, [COUNT] - number of visits
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Packet loss //   Utrata pakietów
-//Funkcja generuje średnią liczbę utraty pakietów w nazwie kanału
+		// Packet loss
+//Function generates average packet loss in channel name
 $config['function']['packetloss'] = Array(
 	'enable' => false,
-	'channel' => 1101,  //id kanału
-	'channelname' => "[cspacer0]●Średnia utrata pakietów: [COUNT]% ●",  //nazwa kanału, [COUNT] - utrata pakietów
+	'channel' => 1101,  //channel id
+	'channelname' => "[cspacer0]●Average packet loss: [COUNT]% ●",  //channel name, [COUNT] - packet loss
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Ping //  Ping
-//Funkcja generuje średni ping w nazwie kanału
+		// Ping
+//Function generates average ping in channel name
 $config['function']['ping'] = Array(
 	'enable' => false,
-	'channel' => 992,  //id kanału
-	'channelname' => "[cspacer0]●Średni ping: [COUNT] ms●",  //nazwa kanału, [COUNT] - średni ping
+	'channel' => 992,  //channel id
+	'channelname' => "[cspacer0]●Average ping: [COUNT] ms●",  //channel name, [COUNT] - average ping
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Uptime //  Czas działania
-//Funkcja generuje czas działania serwera w nazwie kanału
+		// Uptime
+//Function generates server uptime in channel name
 $config['function']['uptime'] = Array(
 	'enable' => false,
-	'channel' => 992,  //id kanału
-	'channelname' => "[cspacer0]●Czas działania: [COUNT]●",  //nazwa kanału, [COUNT] - czas działania serwera
+	'channel' => 992,  //channel id
+	'channelname' => "[cspacer0]●Uptime: [COUNT]●",  //channel name, [COUNT] - server uptime
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Generate banner //  Generowanie bannera
-//Funkcja generuje banner
+		// Generate banner
+//Function generates banner
 $config['function']['generatebanner'] = Array(
 	'enable' => true,
 	
-//użytkownicy online	
+//users online	
 	'useronline' => Array(
 	'enable' => true,
-	'color' => Array(255,255,255),  //kolor rgb
-	'font' => "brlnsdb",  //czcionka (arial, brlnsdb, calibri, katana, tahoma)
-	'position' => Array(40,0,105,171)  // (rozmiar, rotacja, pozycja x, pozycja y)
+	'color' => Array(255,255,255),  //rgb color
+	'font' => "brlnsdb",  //font (arial, brlnsdb, calibri, katana, tahoma)
+	'position' => Array(40,0,105,171)  // (size, rotation, position x, position y)
 	),
 
-//liczba administracji online	
+//admins online count	
 	'adminonline' => Array(
 	'enable' => true,
 	'adminsgroup' => Array(6,30),
@@ -208,7 +208,7 @@ $config['function']['generatebanner'] = Array(
 	'position' => Array(40,0,850,171)
 	),
 
-//rekord online
+//record online
 	'recordonline' => Array(
 	'enable' => false,
 	'color' => Array(255,255,255),
@@ -216,7 +216,7 @@ $config['function']['generatebanner'] = Array(
 	'position' => Array(40,0,105,325)
 	),
 
-//rekord miesiąca	
+//month record	
 	'monthrecord' => Array(
 	'enable' => false,
 	'color' => Array(255,255,255),
@@ -224,7 +224,7 @@ $config['function']['generatebanner'] = Array(
 	'position' => Array(40,0,105,325)
 	),
 
-//godzina
+//time
 	'time' => Array(
 	'enable' => true,
 	'color' => Array(255,255,255),
@@ -232,7 +232,7 @@ $config['function']['generatebanner'] = Array(
 	'position' => Array(40,0,440,103)
 	),
 
-//data	
+//date	
 	'date' => Array(
 	'enable' => false,
 	'color' => Array(255,255,255),
@@ -240,26 +240,26 @@ $config['function']['generatebanner'] = Array(
 	'position' => Array(40,0,105,325)
 	),
 	
-	'image' => "include/cache/bg.png",  //lokalizacja banera
-	'savethere' => "/var/www/html/image.png",  //lokalizacja, gdzie zostanie wygenerowany banner
+	'image' => "include/cache/bg.png",  //banner file location
+	'savethere' => "/var/www/html/image.png",  //location where banner will be saved
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 10), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Channel zone clients count // Liczba użytkowników w strefie
-//Funkcja generuje liczbę użytkowników w danej strefie w nazwie kanału
+		// Channel zone clients count
+//Function generates number of users in specified zone in channel name
 $config['function']['channelzoneclient'] = Array(
 	'enable' => true,
 	'info' => Array(
 		1 => Array(
-			'channel' => 1214,  //id kanału
-			'channelname' => "[cspacer0]Klientów: [count]",  //nazwa kanału, [count] - liczba klientów
-			'channelzonestart' => 265,  //id kanału, gdzie zaczyna się liczenie użytkoników
-			'channelzonestop' => 1212  //id kanału, gdzie kończy się liczenie użytkoników
+			'channel' => 1214,  //channel id
+			'channelname' => "[cspacer0]Clients: [count]",  //channel name, [count] - number of clients
+			'channelzonestart' => 265,  //channel id where user counting starts
+			'channelzonestop' => 1212  //channel id where user counting ends
 		),
 		2 => Array(
 			'channel' => 1213,
-			'channelname' => "[cspacer1]Klientów: [count]",  
+			'channelname' => "[cspacer1]Clients: [count]",  
 			'channelzonestart' => 35,
 			'channelzonestop' => 307
 		),
@@ -268,30 +268,30 @@ $config['function']['channelzoneclient'] = Array(
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Admins list //  Lista administracji
-//Funkcja generuje listę administracji w nazwie kanału
+		// Admins list
+//Function generates admin list in channel name
 $config['function']['adminslist'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'group' => Array(30, 6),  //wszystkie grupy administracyjne
+	'channel' => 992, //channel id
+	'group' => Array(30, 6),  //all admin groups
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 30), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Time left //  Odliczanie do daty
-//Funkcja wyświetla pozostały czas do danego wydarzenia w nazwie kanału
+		// Time left
+//Function displays remaining time to event in channel name
 $config['function']['timeleft'] = Array(
 	'enable' => false,
 	'info' => Array(
 		1 => Array(
-			'channel' => 992,  //id kanału
-			'channelname' => "urodziny admina: [left]",  //nazwa kanału  [left] - pozostały czas
+			'channel' => 992,  //channel id
+			'channelname' => "admin birthday: [left]",  //channel name  [left] - time remaining
 			'time' => "27.11.2018 12:30", // d.m.YYYY h:m
-			'channelnameafter' => "Happy"  //nazwa kanału po minięciu daty
+			'channelnameafter' => "Happy"  //channel name after date passes
 		),
 		2 => Array(
 			'channel' => 1058,
-			'channelname' => "urodziny admina: [left]",
+			'channelname' => "admin birthday: [left]",
 			'time' => "31.12.2017 0:0", // d.m.YYYY h:m
 			'channelnameafter' => "Happy"
 		)
@@ -305,30 +305,30 @@ $config['function']['timeleft'] = Array(
 /////////////////////////////////////////
 $config[2]['enable'] = true;
 
-$config[2]['server']['ip'] = '127.0.0.1'; //ip serwera
-$config[2]['server']['port'] = 9987; //port serwera
-$config[2]['server']['queryport'] = 10011; //port server query
-$config[2]['query']['login'] = 'serveradmin'; //nazwa server query
-$config[2]['query']['password'] = ''; //hasło server query
-$config[2]['bot']['name'] = "#2"; //nazwa bota
-$config[2]['bot']['channel'] =  28; //domyślny kanał bota
-$config[2]['bot']['speed'] = 1; //intertwał bota
-$config[2]['bot']['icons']['enable'] = true;  //generowanie ikon
-$config[2]['bot']['icons']['localization'] = "/var/www/html/icon/icons/";  //lokalizacja generowania ikon
-$config[2]['bot']['icons']['adress'] = "https://xtrust.pl/icon/icons/";  //adres www ikon
+$config[2]['server']['ip'] = '127.0.0.1'; //server ip
+$config[2]['server']['port'] = 9987; //server port
+$config[2]['server']['queryport'] = 10011; //server query port
+$config[2]['query']['login'] = 'serveradmin'; //server query username
+$config[2]['query']['password'] = ''; //server query password
+$config[2]['bot']['name'] = "#2"; //bot name
+$config[2]['bot']['channel'] =  28; //bot default channel
+$config[2]['bot']['speed'] = 1; //bot interval
+$config[2]['bot']['icons']['enable'] = true;  //icon generation
+$config[2]['bot']['icons']['localization'] = "/var/www/html/icon/icons/";  //icon generation location
+$config[2]['bot']['icons']['adress'] = "https://xtrust.pl/icon/icons/";  //icon web address
 
 $config[2]['functions'] = Array('groupclientcount', 'privatechannel', 'checkchannels', 'servername', 'clientstatus', 'timechannel', 'imieniny', 'monthrecord', 'youtube', 'twitch', 'welcomemessage', 'pokeonchannel', 'vpndetection', 'advertisement', 'botinfo', 'ddosdetection', 'antyrecording', 'nickcontrol', 'gameinfo');
 
-		// Group client count //  Liczba użytkowników grupy
-//Funkcja generuje liczbę użytkowników danej grupy serwerowej w nazwie kanału
+		// Group client count
+//Function generates number of users in specified server group in channel name
 $config['function']['groupclientcount'] = Array(
 	'enable' => true,
 	'info' => Array(
 		1 => Array  
 			(
-			'channel' => 286,  //id kanału
-			'group' => 30,  //id grupy
-			'channelname' => '[cspacer][RANG] Online: [ONLINE] / [MAX]',  //nazwa kanału, [RANG] - nazwa rangi, [ONLINE] - użytkowników online, [MAX] - łączna ilość użytkowników
+			'channel' => 286,  //channel id
+			'group' => 30,  //group id
+			'channelname' => '[cspacer][RANG] Online: [ONLINE] / [MAX]',  //channel name, [RANG] - rank name, [ONLINE] - users online, [MAX] - total users
 		),
 		2 => Array  
 			(
@@ -348,65 +348,65 @@ $config['function']['groupclientcount'] = Array(
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Private channel //  Prywatny kanał
-//Funkcja służy do nadawania kanałów prywatnych
+		// Private channel
+//Function assigns private channels to users
 $config['function']['privatechannel'] = Array(
 	'enable' => true,
-	'clientonchannel' => 93, //id kanału, na którym można dostać prywatny kanał
-	'needgroup' => Array(14,15),  //wymagane grupy aby dostać kanał
-	'channelzone' => 265, //strefa kanałów prywatnych
-	'admingroup' => 5,  //id grupy kanałowej administratora kanału
-	'subchannels' => 2, //liczba podkanałów
-	'channeltopic' => "#free", //temat w wolnych kanałach
-	'messageafter' => "Pamiętaj o zmianie hasła",  //wiadomość po otrzymaniu kanału
-	'channelname' => "Kanał prywatny - [NICK]",  //nazwa kanału
-	'subchannelname' => "Podkanał",  //nazwa podkanałów
+	'clientonchannel' => 93, //channel id where user can get private channel
+	'needgroup' => Array(14,15),  //required groups to get channel
+	'channelzone' => 265, //private channel zone
+	'admingroup' => 5,  //channel admin group id
+	'subchannels' => 2, //number of subchannels
+	'channeltopic' => "#free", //topic in free channels
+	'messageafter' => "Remember to change password",  //message after receiving channel
+	'channelname' => "Private channel - [NICK]",  //channel name
+	'subchannelname' => "Subchannel",  //subchannel name
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Check channels //  Sprawdzanie kanałów
-//Funkcja służy do sprawdzania kanałów prywatnych
+		// Check channels
+//Function checks private channels
 $config['function']['checkchannels'] = Array(
 	'enable' => true,
-	'channelzone' => 265,  //strefa kanałów prywatnych
-	'channelzonename' => "[cspacer]Kanałów prywatnych: [COUNT]",  //nazwa głównego kanału strefy, [COUNT] - liczba kanałów prywatnych
-	'channeltopic' => "#free", //temat w wolnych kanałach
-	'freechannelscount' => 5,  //minimalna liczba wolnych kanałów
-	'channelslist' => 265,  //id kanału, w którym zostaną wypisane wolne i zajęte kanały
-	'channelname' => "[NUMBER]. Kanał prywatny - wolny",  //Nazwa wolnego kanału
-	'intervaldelete' => 7, //liczba dni, po których kanał zostanie usuniety 
-	'setdate' => true, //ustawianie aktualnej daty, jeśli ktoś znajduje się na kanale
-	'checkname' => true, //sprawdzanie nazw kanałów
-	'block' => "chuj,kurwa,szmata,huj,chój,hój,kórwa,zajebać,zajebac,zapierdalać,zapierdalac,zapierdolić,zapierdolic,zjeb,zajebać,zajebac,wpierdol,wpierdalać,wpierdalac,wkurwienie,wkurwiony,wychujać,wychujac,wykurwiście,wykurwiscie,ujebać,ujebac,ujebany,upierdolony,suka,sóka,sukinsyn,sókinsyn,sukinkot,sókinkot,spierdolić,spierdolic,spierdalać,spierdalac,skurwysyństwo,skurwysynstwo,skurwysynowanie,skurwysynek,zkurwysyn,skurwiel,zkurwiel,skurwiały,surwialy,zkurwiały,zkurwialy,przyjebać,przyjebac,przerżnąć,przerznac,przejebane,przechuj,przehuj,porucha,popierdolony,pojeb,pojebać,pojebac,pojebany,podjebac,podjebać,pizda,pizdeczka,pierdolony,pierdolnik,pierdolnięty,pierdolniety,opierdalać,opierdalac,odpierdalać,odpierdalac,matkojebca,kozojebca,kurrewka,kurewski,kurewsko,kurwić,kurwic,kutas,jebać,jebac,jebanie,jebanko,jebany,jebaństwo,jebnąć,jebnac,dojebać,dojebac,dopierdolić,dopierdolic,dopierdoloenie,dziwka,dzifka,chujnia,hujnia,chujowy,hujowy,cwel,cfel,cipa,cipka,cipeczka,rucham,TeamSpeakUser,[RooT],[HSA]", //zabronione słowa w nazwach kanałów
-	'message' => "Zmień nazwę kanału",  //nazwa kanału, jeśli nazwa kanału zawiera zabronione słowo
-	'intervalname' => Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0),  //interwał sprawdzania nazw kanałów
+	'channelzone' => 265,  //private channel zone
+	'channelzonename' => "[cspacer]Private channels: [COUNT]",  //zone main channel name, [COUNT] - number of private channels
+	'channeltopic' => "#free", //topic in free channels
+	'freechannelscount' => 5,  //minimum number of free channels
+	'channelslist' => 265,  //channel id where free and occupied channels will be listed
+	'channelname' => "[NUMBER]. Private channel - free",  //Free channel name
+	'intervaldelete' => 7, //number of days after which channel will be deleted 
+	'setdate' => true, //set current date if someone is on channel
+	'checkname' => true, //check channel names
+	'block' => "fuck,shit,ass,bitch,damn,crap,piss,dick,cock,pussy,TeamSpeakUser,[RooT],[HSA]", //blocked words in channel names
+	'message' => "Change channel name",  //message if channel name contains blocked word
+	'intervalname' => Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0),  //interval for checking channel names
 	'datazeroname' => '1970-01-01 00:00:00',
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 2),  //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Server name //  Nazwa serwera
-//Funkcja zmienia nazwę serwera 
+		// Server name
+//Function changes server name 
 $config['function']['servername'] = Array(
 	'enable' => true,
-	'channelname' => "xTrust.pl [ONLINE]/[MAX]",  //nazwa serwera
+	'channelname' => "xTrust.pl [ONLINE]/[MAX]",  //server name
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5),  //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 	
-		// Client status //  Status użytkownika
-//Funkcja generuje status użytkownika w nazwie kanału oraz dokładniejsze informacje w opisie kanału
+		// Client status
+//Function generates user status in channel name and detailed information in channel description
 $config['function']['clientstatus'] = Array(
 	'enable' => true,
-	'aalgroup' => Array(6, 30),  //wszystkie id grup
-	'steamstatus' => true,  //status steam
+	'aalgroup' => Array(6, 30),  //all group ids
+	'steamstatus' => true,  //steam status
 	'steamapi' => "A3F4695EEF3317F8EE14941692AA7BA6",  //steam api
 	'info' => Array(
 		1 => Array(
-			'dbid' => 2, //dbid użytkownika
-			'channel' => 184,  //id kanału
-			'steamid' => 76561198101162681  //steam id użytkownika
+			'dbid' => 2, //user database id
+			'channel' => 184,  //channel id
+			'steamid' => 76561198101162681  //user steam id
 			),  //steamid64
 		2 => Array(
 			'dbid' => 1824,
@@ -435,29 +435,29 @@ $config['function']['clientstatus'] = Array(
 		),
 	
 	),
-	'channelname' => "[cspacer]◥◣━[RANG]┃[NICK]┃[STATUS]━◢◤",  //nazwa kanału, [RANG] - ranga, [NICK] - nazwa użytkownika, [STATUS] - status na teamspeak
+	'channelname' => "[cspacer]◥◣━[RANG]┃[NICK]┃[STATUS]━◢◤",  //channel name, [RANG] - rank, [NICK] - user name, [STATUS] - teamspeak status
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 10),  //interval
-	'interval2' => Array('days' => 0, 'hours' => 0, 'minutes' => 2, 'seconds' => 0),  //interwał aktualizowania informacji w opisach kanałów
+	'interval2' => Array('days' => 0, 'hours' => 0, 'minutes' => 2, 'seconds' => 0),  //interval for updating information in channel descriptions
 	'datazero' => '1970-01-01 00:00:00',
 	'datazero2' => '1970-01-01 00:00:00'
 );
 
-		// Time channel //  Kanał czasowy
-//Funkcja służy do otwierania kanału w określonych godzinach
+		// Time channel
+//Function opens channel at specified hours
 $config['function']['timechannel'] = Array(
 	'enable' => false,
 	'info' => Array(
 		1 => Array(
-			'channel' => 992,  //id kanału
-			'channelnameon' => "Działa",  //nazwa kanału, gdy jest dostępny
-			'channelnameoff' => "Nie działa",  //nazwa kanału, gdy jest niedostępny
+			'channel' => 992,  //channel id
+			'channelnameon' => "Working",  //channel name when available
+			'channelnameoff' => "Not working",  //channel name when unavailable
 			'timeon' => "9:54",
 			'timeoff' => "19:51"
 		),
 		2 => Array(
 			'channel' => 993,
-			'channelnameon' => "Działa2", 
-			'channelnameoff' => "Nie działa2",
+			'channelnameon' => "Working2", 
+			'channelnameoff' => "Not working2",
 			'timeon' => "8:00",
 			'timeoff' => "9:53"
 		)
@@ -466,150 +466,150 @@ $config['function']['timechannel'] = Array(
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Imieniny //  
-//Funkcja generuje imiona osób obchodzące imieniny w nazwie kanału
+		// Name days (for Polish users)
+//Function generates name day celebrations in channel name
 $config['function']['imieniny'] = Array(
 	'enable' => false,
-	'channel' => 992,  //id kanału
-	'channelname' => "Imieniny: [NAME]",  //nazwa kanału, [NAME] - imiona
+	'channel' => 992,  //channel id
+	'channelname' => "Name days: [NAME]",  //channel name, [NAME] - names
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 1),  //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-// Month record //  Rekord miesiąca
-//Funkcja generuje rekord miesiąca w nazwie kanału
+// Month record
+//Function generates month record in channel name
 $config['function']['monthrecord'] = Array(
 	'enable' => true,
-	'channel' => 857,//id kanału
-	'channelname' => "[cspacer]● Rekord miesiąca: [RECORD] ●",  //nazwa kanału, [RECORD] - rekord
+	'channel' => 857,//channel id
+	'channelname' => "[cspacer]● Month record: [RECORD] ●",  //channel name, [RECORD] - record
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Youtube //
-//Funkcja wyświetla liczbę subskrybcji kanału youtube w nazwie kanału oraz wyświetla dokładniejsze informacje w opisie
+		// Youtube
+//Function displays YouTube channel subscriber count in channel name and detailed information in description
 $config['function']['youtube'] = Array(
 	'enable' => true,
 	'youtubeapi' => "AIzaSyDovcc8n_eHnRuTwKItjJLaPkFwG-u7lWk",  //youtube api
-	'channnelname' => "[cspacer]✯[NICK] - [SUBSCOUNT]✯",  //nazwa kanału, [NICK] - nazwa kanału, [SUBSCOUNT] - liczba subskrybcji
+	'channnelname' => "[cspacer]✯[NICK] - [SUBSCOUNT]✯",  //channel name, [NICK] - channel name, [SUBSCOUNT] - subscriber count
 	'info' => Array(
 		1 => Array(
-			'channelid' => 611,  //id kanału
-			'youtubechannel' => "UCswiY-euT4t-0gq-_2dZwKA"  //kanał yooutube
+			'channelid' => 611,  //channel id
+			'youtubechannel' => "UCswiY-euT4t-0gq-_2dZwKA"  //youtube channel
 		)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Twitch //
-//Funkcja wyświetla status streama na Twitchu w nazwie kanału oraz wyświetla dokładniejsze informacje w opisie
+		// Twitch
+//Function displays Twitch stream status in channel name and detailed information in description
 $config['function']['twitch'] = Array(
 	'enable' => false,
 	'twitchapi' => "352ei7jf3jq2mu6jvvovjy4qwv6huc",  //twitch api
-	'channelname' => "[cspacer]✯[NICK] - [STATUS]✯",  //nazwa kanału, [NICK] - nazwa kanału,  [STATUS] - status 
+	'channelname' => "[cspacer]✯[NICK] - [STATUS]✯",  //channel name, [NICK] - channel name,  [STATUS] - status 
 	'info' => Array(
 		1 => Array(
-			'channelid' => 992,  //id kanału
-			'channelname' => "izakooo"  //nazwa kanału
+			'channelid' => 992,  //channel id
+			'channelname' => "izakooo"  //channel name
 		)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Welcome message //  Wiadomość powitalna
-//Funkcja generuje wiadomość powitalną
+		// Welcome message
+//Function generates welcome message
 $config['function']['welcomemessage'] = Array(
 	'enable' => true,
-	'mode' => 1,  //1 - zaczep, 2 - wyślij wiadomość
-	'message' => "		[b]Teraz jest [online]/[max] osób![/b]\n Jesteś youtuberem/streamerem? Napisz do nas!",  //nazwa kanłu, [online] - użytkowników online, [max] - liczba slotów
+	'mode' => 1,  //1 - poke, 2 - send message
+	'message' => "		[b]Currently [online]/[max] people online![/b]\n Are you a YouTuber/streamer? Write to us!",  //message, [online] - users online, [max] - number of slots
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 2), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Poke on channel //  Zaczepianie na kanale
-//Fukcja zaczepia wybrane grupy, gdy ktoś znajduje się na danym kanale
+		// Poke on channel
+//Function pokes selected groups when someone is on specified channel
 $config['function']['pokeonchannel'] = Array(
 	'enable' => true,
 	'info' => Array(
 		1 => Array(
-			'channel' => 33,  //id kanału
-			'pokegroup' => Array(6,30),  //id grup do zaczepienia
-			'message' => "[NICK] ma skargę"  //wiadomość
+			'channel' => 33,  //channel id
+			'pokegroup' => Array(6,30),  //group ids to poke
+			'message' => "[NICK] has a complaint"  //message
 		)
 	),
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 30), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// VPN detection //  Wykrywanie VPN
-//Funkcja wykrywa VPS u użytkowników (aktualnie nie działa)
+		// VPN detection
+//Function detects VPN in users (currently not working)
 $config['function']['vpndetection'] = Array(
 	'enable' => false,
-	'ignore' => Array(6, 30),  //ignorowane grupy
+	'ignore' => Array(6, 30),  //ignored groups
 	'key' => "111111-222222-333333-444444",
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// advertisement //  Reklama
-//Funkcja wysyła co dany czas wiadomość na serwer
+		// advertisement
+//Function sends message to server at specified intervals
 $config['function']['advertisement'] = Array(
 	'enable' => false,
-	'message' => "Wiadomość [online]/[max]",  //wiadomość [online] - użytkowników online, [max] - łączna liczba użytkowników
+	'message' => "Message [online]/[max]",  //message [online] - users online, [max] - total users
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 5), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Bot info //  Informacje o bocie
-//Funkcja wyświetla informacje o instancjach bota w opise kanału
+		// Bot info
+//Function displays bot instance information in channel description
 $config['function']['botinfo'] = Array(
 	'enable' => true,
-	'channel' => 1074, //id kanału
+	'channel' => 1074, //channel id
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 2, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Ddos detection //  Wykrywanie ataków Ddos
-//Fukcja wykrywa atak Ddos i wysyła wiadomość na serwer
+		// Ddos detection
+//Function detects DDoS attack and sends message to server
 $config['function']['ddosdetection'] = Array(
 	'enable' => true,
-	'packetloss' => 10, //średni loss na serwerze
-	'message' => "[b]Wykryto atak Ddos[/b]",  //wiadomość
+	'packetloss' => 10, //average packet loss on server
+	'message' => "[b]DDoS attack detected[/b]",  //message
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 30), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Anty recording //  Blokada nagrywania
-//Funcja wykrywa osoby nagrywające na serwerze
+		// Anti recording
+//Function detects people recording on server
 $config['function']['antyrecording'] = Array(
 	'enable' => true,
-	'mode' => 2,  // 1 - zaczep, 2 - wyrzuć z serwera
-	'message' => "[b]Wyłącz nagrywanie[/b]",  //wiadomość
+	'mode' => 2,  // 1 - poke, 2 - kick from server
+	'message' => "[b]Turn off recording[/b]",  //message
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 10), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Nick control //  Kontrola nicków
-//Funkcja sprawdza nazwy użytkowników
+		// Nick control
+//Function checks user nicknames
 $config['function']['nickcontrol'] = Array(
 	'enable' => true,
-	'block' => "chuj,kurwa,szmata,huj,chój,hój,kórwa,zajebać,zajebac,zapierdalać,zapierdalac,zapierdolić,zapierdolic,zjeb,zajebać,zajebac,wpierdol,wpierdalać,wpierdalac,wkurwienie,wkurwiony,wychujać,wychujac,wykurwiście,wykurwiscie,ujebać,ujebac,ujebany,upierdolony,suka,sóka,sukinsyn,sókinsyn,sukinkot,sókinkot,spierdolić,spierdolic,spierdalać,spierdalac,skurwysyństwo,skurwysynstwo,skurwysynowanie,skurwysynek,zkurwysyn,skurwiel,zkurwiel,skurwiały,surwialy,zkurwiały,zkurwialy,przyjebać,przyjebac,przerżnąć,przerznac,przejebane,przechuj,przehuj,porucha,popierdolony,pojeb,pojebać,pojebac,pojebany,podjebac,podjebać,pizda,pizdeczka,pierdolony,pierdolnik,pierdolnięty,pierdolniety,opierdalać,opierdalac,odpierdalać,odpierdalac,matkojebca,kozojebca,kurrewka,kurewski,kurewsko,kurwić,kurwic,kutas,jebać,jebac,jebanie,jebanko,jebany,jebaństwo,jebnąć,jebnac,dojebać,dojebac,dopierdolić,dopierdolic,dopierdoloenie,dziwka,dzifka,chujnia,hujnia,chujowy,hujowy,cwel,cfel,cipa,cipka,cipeczka,TeamSpeakUser,rucham,[RooT],[HSA]", //blokowane słowa
-	'message' => "Zmień nick",  //wiadomość
+	'block' => "fuck,shit,ass,bitch,damn,crap,piss,dick,cock,pussy,TeamSpeakUser,[RooT],[HSA]", //blocked words
+	'message' => "Change nickname",  //message
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 1, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Game info //  Informacje o serwerze gry
-//Fukcja wyświetla w nazwach kanałów informacje o serwerze z gier cs:go i mc, które są dodane na stronę gametracker.com
+		// Game info
+//Function displays game server information in channel names for CS:GO and Minecraft servers added to gametracker.com
 $config['function']['gameinfo'] = Array(
 	'enable' => false,
 	'info' => Array(
 		1 => Array(
-			'game' => "csgo",  //gra  (csgo - Counter Strike Global Ofensive, mc - Minecraft)
-			'channel' => 992,  //id kanału
-			'servername' => "Counter Strike [ONLINE]/[MAX]",  //nazwa kanłu, [ONLINE] - liczba graczy online, [MAX] - liczba slotów
+			'game' => "csgo",  //game  (csgo - Counter Strike Global Offensive, mc - Minecraft)
+			'channel' => 992,  //channel id
+			'servername' => "Counter Strike [ONLINE]/[MAX]",  //channel name, [ONLINE] - players online, [MAX] - number of slots
 			'serverip' => "137.74.1.201:27195",
 		),
 		2 => Array(
@@ -628,91 +628,91 @@ $config['function']['gameinfo'] = Array(
 /////////////////////////////////////////
 $config[3]['enable'] = true;
 
-$config[3]['server']['ip'] = '127.0.0.1'; //ip serwera
-$config[3]['server']['port'] = 9987; //port serwera
-$config[3]['server']['queryport'] = 10011; //port server query
-$config[3]['query']['login'] = 'serveradmin'; //nazwa server query
-$config[3]['query']['password'] = ''; //hasło server query
-$config[3]['bot']['name'] = "LiveHelp"; //nazwa bota
-$config[3]['bot']['channel'] =  28; //domyślny kanał bota
-$config[3]['bot']['speed'] = 1; //intertwał bota
+$config[3]['server']['ip'] = '127.0.0.1'; //server ip
+$config[3]['server']['port'] = 9987; //server port
+$config[3]['server']['queryport'] = 10011; //server query port
+$config[3]['query']['login'] = 'serveradmin'; //server query username
+$config[3]['query']['password'] = ''; //server query password
+$config[3]['bot']['name'] = "LiveHelp"; //bot name
+$config[3]['bot']['channel'] =  28; //bot default channel
+$config[3]['bot']['speed'] = 1; //bot interval
 
 $config[3]['functions'] = Array('helpchannel');
 
-		// Help channel //  Kanał pomocy
-//Fukcja służy do automatycznej pomocy użytkownikom
+		// Help channel
+//Function provides automatic help to users
 $config['function']['helpchannel'] = Array(
-	'channel' => 30,  //id kanału
-	'channeldesc' => "[COMMAND]",  //opis kanału, [COMMAND] - komendy
-	'admingroup' => Array(6, 30),  //id grup administracyjnych
-	'channeladmingroups' => Array(5,10),  //id grup administratorów kanałów
-	'bangroup' => 18,  //id gupy banującej na kanale
-	'commandlist' => "!komendy", //lista komend
-	'grouplist' => "!grupy",  //komenda do listy dostępnych grup
-	'adminpokemessage' => "[NICK] potrzebuje pomocy!",  //wiadomość do administracji, po uźyciu komendy !admin
-	'needgroupall' => Array(14,15),  //wymagane grupy do uzyskania pomocy
-	'ignoredonchannel' => Array(191,292),  //kanały, na których administracja nie jest zaczepiana
-	'profilelinkenable' => true,  //link do profilu
-	'profilelink' => "xtrust.pl/stats",  //adres strony
-	//rejestracja
+	'channel' => 30,  //channel id
+	'channeldesc' => "[COMMAND]",  //channel description, [COMMAND] - commands
+	'admingroup' => Array(6, 30),  //admin group ids
+	'channeladmingroups' => Array(5,10),  //channel admin group ids
+	'bangroup' => 18,  //banning group id on channel
+	'commandlist' => "!commands", //command list
+	'grouplist' => "!groups",  //command for available groups list
+	'adminpokemessage' => "[NICK] needs help!",  //message to admins after using !admin command
+	'needgroupall' => Array(14,15),  //required groups to get help
+	'ignoredonchannel' => Array(191,292),  //channels where admins are not poked
+	'profilelinkenable' => true,  //profile link
+	'profilelink' => "xtrust.pl/stats",  //website address
+	//registration
 	'needgroup' => Array(  
 		1 => Array(
-			'groupid' => 14,  //id grupy
-			'command' => "!m"  //komenda
+			'groupid' => 14,  //group id
+			'command' => "!m"  //command
 		),
 		2 => Array(
 			'groupid' => 15,
 			'command' => "!k"
 		),
 	),
-	'servergroup' => Array(19,20,21,22,23,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,88,83),  //dostępne grupy serwerowe
-	'maxservergroup' => 6,  //maksymalna ilość grup
-	'channeldesctopic' => "[center][size=15][b]Komendy[/b][/size][/center]",  //opis kanału
-	'msgtoadminenable' => true, //wiadomość do administracji, jeśli 4 instancja jest włączona
-	'msgtoadminchannel' => 17, //id kanału, w którym zostaną wypisane wiadomości do administracji
-	'msgtoadminmax' => 12,  //maksymalna ilość wiadomości do administracji
-	'msgtoadmindelete' => true,  //usuwanie starszych wiadomości
-	//własne komendy
+	'servergroup' => Array(19,20,21,22,23,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,88,83),  //available server groups
+	'maxservergroup' => 6,  //maximum number of groups
+	'channeldesctopic' => "[center][size=15][b]Commands[/b][/size][/center]",  //channel description
+	'msgtoadminenable' => true, //message to admins, if 4th instance is enabled
+	'msgtoadminchannel' => 17, //channel id where admin messages will be displayed
+	'msgtoadminmax' => 12,  //maximum number of admin messages
+	'msgtoadmindelete' => true,  //delete older messages
+	//custom commands
 	'info' => Array(
 		1 => Array(
-	'command' => "!poziomy",  //komenda
-	'message' => "\n[b]Spis poziomów:[/b]
-1 poziom - 1 godzina
-2 poziom - 2 godziny
-3 poziom - 4 godziny
-4 poziom - 8 godziny
-5 poziom - 12 godziny
-6 poziom - 18 godziny
-7 poziom - 1 dzień
-8 poziom - 2 dni
-9 poziom - 3 dni
-10 poziom - 5 dni
-11 poziom - 7 dni
-12 poziom - 9 dni
-13 poziom - 11 dni
-14 poziom - 13 dni
-15 poziom - 15 dni 
-16 poziom - 18 dni
-17 poziom - 21 dni
-18 poziom - 24 dni
-19 poziom - 27 dni
-20 poziom - 30 dni
-21 poziom - 33 dni
-22 poziom - 36 dni
-23 poziom - 39 dni
-24 poziom - 42 dni
-25 poziom - 45 dni
-26 poziom - 50 dni
-27 poziom - 55 dni
-28 poziom - 60 dni
-29 poziom - 75 dni
-30 poziom - 90 dni",  //tekst do wyświetlenia
-	'desc' => "lista poziomów"
+	'command' => "!levels",  //command
+	'message' => "\n[b]Levels list:[/b]
+1 level - 1 hour
+2 level - 2 hours
+3 level - 4 hours
+4 level - 8 hours
+5 level - 12 hours
+6 level - 18 hours
+7 level - 1 day
+8 level - 2 days
+9 level - 3 days
+10 level - 5 days
+11 level - 7 days
+12 level - 9 days
+13 level - 11 days
+14 level - 13 days
+15 level - 15 days 
+16 level - 18 days
+17 level - 21 days
+18 level - 24 days
+19 level - 27 days
+20 level - 30 days
+21 level - 33 days
+22 level - 36 days
+23 level - 39 days
+24 level - 42 days
+25 level - 45 days
+26 level - 50 days
+27 level - 55 days
+28 level - 60 days
+29 level - 75 days
+30 level - 90 days",  //text to display
+	'desc' => "levels list"
 	),
 		2 => Array(
 			'command' => "!vip",
-			'message' => "[b]Aby kupić rangę lub kanał VIP, udaj się na [url=http://xtrust.pl]xtrust.pl[/url][/b]",
-			'desc' => "informacje o VIP"
+			'message' => "[b]To buy VIP rank or channel, go to [url=http://xtrust.pl]xtrust.pl[/url][/b]",
+			'desc' => "VIP information"
 		),
 	),
 	'datazero' => '1970-01-01 00:00:00',  //datazero
@@ -724,155 +724,155 @@ $config['function']['helpchannel'] = Array(
 ////////////////////////////////////////////
 $config[4]['enable'] = true;
 
-$config[4]['server']['ip'] = '127.0.0.1'; //ip serwera
-$config[4]['server']['port'] = 9987; //port serwera
-$config[4]['server']['queryport'] = 10011; //port server query
-$config[4]['query']['login'] = 'serveradmin'; //nazwa server query
-$config[4]['query']['password'] = ''; //hasło server query
-$config[4]['bot']['name'] = "#4"; //nazwa bota
-$config[4]['bot']['channel'] =  28; //domyślny kanał bota
-$config[4]['bot']['speed'] = 5; //intertwał bota
-$config[4]['database']['host'] ='127.0.0.1';  //adres bazy danych
-$config[4]['database']['login'] = 'phpmyadmin';  //login bazy danych
-$config[4]['database']['password'] = '';  //hasło bazy danych
-$config[4]['database']['dbname'] = 'xTrustbot';  //nazwa bazy danych
-$config[4]['bot']['idletime'] = 5;  //czas nieaktywności, po którym zostanie liczony
-$config[4]['bot']['admins_group'] = Array(30,6);  //id grup administracyjnych
-$config[4]['bot']['channel_admin_group'] = 5;  //id grupy administracyjnej kanału
+$config[4]['server']['ip'] = '127.0.0.1'; //server ip
+$config[4]['server']['port'] = 9987; //server port
+$config[4]['server']['queryport'] = 10011; //server query port
+$config[4]['query']['login'] = 'serveradmin'; //server query username
+$config[4]['query']['password'] = ''; //server query password
+$config[4]['bot']['name'] = "#4"; //bot name
+$config[4]['bot']['channel'] =  28; //bot default channel
+$config[4]['bot']['speed'] = 5; //bot interval
+$config[4]['database']['host'] ='127.0.0.1';  //database host address
+$config[4]['database']['login'] = 'phpmyadmin';  //database login
+$config[4]['database']['password'] = '';  //database password
+$config[4]['database']['dbname'] = 'xTrustbot';  //database name
+$config[4]['bot']['idletime'] = 5;  //idle time after which it will be counted
+$config[4]['bot']['admins_group'] = Array(30,6);  //admin group ids
+$config[4]['bot']['channel_admin_group'] = 5;  //channel admin group id
 
 
 
 $config[4]['functions'] = Array('top_active_time_all', 'top_active_time_month', 'top_active_time_week', 'top_time_all', 'top_time_month', 'top_time_week', 'top_idle_time_all', 'top_idle_time_month', 'top_idle_time_week', 'top_connections', 'new_users', 'top_lvl', 'rank');
 
-		// Top time all //
-//Funkcja wyświetla osoby z największym łącznym czasem przebywania na serwerze w opisie kanału
+		// Top time all
+//Function displays users with most total time on server in channel description
 $config['function']['top_time_all'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 992, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top time month //
-//Funkcja wyświetla osoby z największym miesięcznym czasem przebywania na serwerze w opisie kanału
+		// Top time month
+//Function displays users with most monthly time on server in channel description
 $config['function']['top_time_month'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 992, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top time week //
-//Funkcja wyświetla osoby z największym tygodniowym czasem przebywania na serwerze w opisie kanału
+		// Top time week
+//Function displays users with most weekly time on server in channel description
 $config['function']['top_time_week'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 992, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
 
-		// Top active time all //
-//Funkcja wyświetla osoby z największym czasem łącznej aktywności w opisie kanału
+		// Top active time all
+//Function displays users with most total active time in channel description
 $config['function']['top_active_time_all'] = Array(
 	'enable' => false,
-	'channel' => 1058, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 1058, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top active time month //
-//Funkcja wyświetla osoby z największym czasem miesięcznej aktywności w opisie kanału
+		// Top active time month
+//Function displays users with most monthly active time in channel description
 $config['function']['top_active_time_month'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 992, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top active time week //
-//Funkcja wyświetla osoby z największym czasem tygodniowej aktywności w opisie kanału
+		// Top active time week
+//Function displays users with most weekly active time in channel description
 $config['function']['top_active_time_week'] = Array(
 	'enable' => true,
-	'channel' => 83706, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 83706, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top idle time all //
-//Funkcja wyświetla osoby z największym łącznym czasem nieaktywności w opisie kanału
+		// Top idle time all
+//Function displays users with most total idle time in channel description
 $config['function']['top_idle_time_all'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 992, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top idle time month //
-//Funkcja wyświetla osoby z największym miesięcznym czasem nieaktywności w opisie kanału
+		// Top idle time month
+//Function displays users with most monthly idle time in channel description
 $config['function']['top_idle_time_month'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 992, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top idle time week //
-//Funkcja wyświetla osoby z największym tygodniowym czasem nieaktywności w opisie kanału
+		// Top idle time week
+//Function displays users with most weekly idle time in channel description
 $config['function']['top_idle_time_week'] = Array(
 	'enable' => false,
-	'channel' => 992, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 992, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top connections //
-//Funkcja wyświetla osoby z największą ilością połączeń z serwerem w opisie kanału
+		// Top connections
+//Function displays users with most connections to server in channel description
 $config['function']['top_connections'] = Array(
 	'enable' => true,
-	'channel' => 83707, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 83707, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 5, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// New users //
-//Funkcja wyświetla nowych użytkowników w opisie kanału
+		// New users
+//Function displays new users in channel description
 $config['function']['new_users'] = Array(
 	'enable' => true,
-	'channel' => 83682, //id kanału
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 83682, //channel id
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 10, 'seconds' => 0), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Top lvl //
-//Funkcja wyświetla osoby z największym poziomem w opisie kanału
+		// Top lvl
+//Function displays users with highest level in channel description
 $config['function']['top_lvl'] = Array(
 	'enable' => false,
-	'channel' => 1058, //id kanału
-	'icon' => true, //ikony w opisie, jeśli generowanie ikon jest włączone
-	'count' => 10,  //ilość osób do wyświetlenia
+	'channel' => 1058, //channel id
+	'icon' => true, //icons in description, if icon generation is enabled
+	'count' => 10,  //number of people to display
 	'interval' => Array('days' => 0, 'hours' => 0, 'minutes' => 0, 'seconds' => 10), //interval
 	'datazero' => '1970-01-01 00:00:00'
 );
 
-		// Rank //
-//Fukcja nadaje rangi na czas przebyty na serwerze
+		// Rank
+//Function assigns ranks based on time spent on server
 $config['function']['rank'] = Array(
 	'enable' => false,
-	'type' => 1, // 1 - czas aktywny, 2 - czas łącznie
-	'needrank' => Array(14,15),  //wymagane rangi
-		'info' => Array(  //rangi
+	'type' => 1, // 1 - active time, 2 - total time
+	'needrank' => Array(14,15),  //required ranks
+		'info' => Array(  //ranks
 			1 => Array(52,3600),  
 			2 => Array(53,7200),
 			3 => Array(54,14400),
@@ -914,22 +914,22 @@ $config['function']['rank'] = Array(
 ////////////////////////////////////////////
 /////////////fifth INSTANCE/////////////////
 ////////////////////////////////////////////
-//Instancja jest odpowiedzialna za komendy administracyjne 
+//Instance is responsible for admin commands 
 $config[5]['enable'] = true;
 
-$config[5]['server']['ip'] = '127.0.0.1'; //ip serwera
-$config[5]['server']['port'] = 9987; //port serwera
-$config[5]['server']['queryport'] = 10011; //port server query
-$config[5]['query']['login'] = 'serveradmin'; //nazwa server query
-$config[5]['query']['password'] = ''; //hasło server query
-$config[5]['bot']['name'] = "#5"; //nazwa bota
-$config[5]['bot']['channel'] =  19; //domyślny kanał bota
-$config[5]['database']['host'] ='127.0.0.1';  //adres bazy danych
-$config[5]['database']['login'] = 'phpmyadmin';  //login bazy danych
-$config[5]['database']['password'] = '';  //hasło bazy danych
-$config[5]['database']['dbname'] = 'xTrustbot';  //nazwa bazy danych
-$config[5]['bot']['admins_bot'] = Array(30,6);  //id grup administratorów bota
-$config[5]['bot']['admins_group'] = Array(30,6);  //id grup administracyjnych
+$config[5]['server']['ip'] = '127.0.0.1'; //server ip
+$config[5]['server']['port'] = 9987; //server port
+$config[5]['server']['queryport'] = 10011; //server query port
+$config[5]['query']['login'] = 'serveradmin'; //server query username
+$config[5]['query']['password'] = ''; //server query password
+$config[5]['bot']['name'] = "#5"; //bot name
+$config[5]['bot']['channel'] =  19; //bot default channel
+$config[5]['database']['host'] ='127.0.0.1';  //database host address
+$config[5]['database']['login'] = 'phpmyadmin';  //database login
+$config[5]['database']['password'] = '';  //database password
+$config[5]['database']['dbname'] = 'xTrustbot';  //database name
+$config[5]['bot']['admins_bot'] = Array(30,6);  //bot admin group ids
+$config[5]['bot']['admins_group'] = Array(30,6);  //admin group ids
 
 
 
@@ -940,14 +940,14 @@ $config[5]['bot']['admins_group'] = Array(30,6);  //id grup administracyjnych
 
 $config[6]['enable'] = true;
 
-$config[6]['server']['ip'] = '127.0.0.1'; //ip serwera
-$config[6]['server']['port'] = 9987; //port serwera
-$config[6]['server']['queryport'] = 10011; //port server query
-$config[6]['query']['login'] = 'serveradmin'; //nazwa server query
-$config[6]['query']['password'] = ''; //hasło server query
-$config[6]['bot']['name'] = "#6"; //nazwa bota
-$config[6]['bot']['channel'] =  992; //domyślny kanał bota
-$config[6]['bot']['speed'] = 1; //intertwał bota
+$config[6]['server']['ip'] = '127.0.0.1'; //server ip
+$config[6]['server']['port'] = 9987; //server port
+$config[6]['server']['queryport'] = 10011; //server query port
+$config[6]['query']['login'] = 'serveradmin'; //server query username
+$config[6]['query']['password'] = ''; //server query password
+$config[6]['bot']['name'] = "#6"; //bot name
+$config[6]['bot']['channel'] =  992; //bot default channel
+$config[6]['bot']['speed'] = 1; //bot interval
 
 $config[6]['functions'] = Array('karaoke');
 
