@@ -50,6 +50,24 @@ function clientstatus()
 							
 						$clientinfo = $tsAdmin->clientDbInfo($client['cldbid']);
 						
+						// Header
+						$desc = "[center]═══════════════════════════[/center]\n";
+						$desc .= "[center][size=13][b]👤 USER PROFILE 👤[/b][/size][/center]\n";
+						$desc .= "[center]═══════════════════════════[/center]\n\n";
+						
+						// User nickname with rank icon
+						$desc .= "[size=12]";
+						if($config[2]['bot']['icons']['enable'])
+						{
+							$desc .= "[center][img]".$config[2]['bot']['icons']['adress'].$group.".png[/img][/center]\n";
+						}
+						
+						$desc .= "[center][b][size=13][URL=client://1/".$client['client_unique_identifier']."]".$client['client_nickname']."[/URL][/size][/b][/center]\n";
+						$desc .= "[center]───────────────────────[/center]\n\n";
+						
+						// TeamSpeak Status Section
+						$desc .= "[size=11][b]💻 TEAMSPEAK STATUS[/b][/size]\n\n";
+						
 						if($status == "ONLINE")
 						{
 							$data1 = time();
@@ -59,86 +77,86 @@ function clientstatus()
 							$h = floor($m/60);
 							$m = $m-($h*60);
 							
-							$statusText = "[color=green][b]".$status."[/b][/color]\n⏱️ ".$language['clientstatus']['activeby'].": [b]".$h."h ".$m."m[/b]"."\n";
+							$desc .= "   🟢 [color=green][b]ONLINE[/b][/color]\n";
+							$desc .= "   ⏱️ Active for: [b]".$h."h ".$m."m[/b]\n";
 						}
 						else
 						{
-							$statusText = "[color=red][b]".$status."[/b][/color]\n🕐 ".$language['clientstatus']['lastconnection'].": [b]".date('Y-m-d G:i:s',$clientinfo['data']['client_lastconnected'])."[/b]\n";
+							$desc .= "   🔴 [color=red][b]OFFLINE[/b][/color]\n";
+							$desc .= "   🕐 Last seen: [b]".date('Y-m-d H:i:s',$clientinfo['data']['client_lastconnected'])."[/b]\n";
 						}
 						
-						$desc = "[center][size=15][b]━━━━━━━━━━━━━━━━━━[/b][/size][/center]\n";
-						$desc .= "[center][size=14][b]👤 USER PROFILE[/b][/size][/center]\n";
-						$desc .= "[center][size=15][b]━━━━━━━━━━━━━━━━━━[/b][/size][/center]\n\n";
+						$desc .= "   🔌 Total connections: [b]".$clientinfo['data']['client_totalconnections']."[/b]\n\n";
 						
-						$desc .= "[size=11]";
-						if($config[2]['bot']['icons']['enable'])
-						{
-							$desc .= "[img]".$config[2]['bot']['icons']['adress'].$group.".png[/img] ";
-						}
-						else
-						{
-							$desc .= "⭐ ";
-						}
-						$desc .= "[b][URL=client://1/".$client['client_unique_identifier']."]".$client['client_nickname']."[/url][/b]\n";
-						$desc .= "[size=10][color=#888888]━━━━━━━━━━━━━━━━━━━━━━[/color][/size]\n\n";
-						
-						$desc .= "💻 [b]Status:[/b] ".$statusText;
-						$desc .= "🔌 [b]".$language['clientstatus']['connections'].":[/b] [b]".$clientinfo['data']['client_totalconnections']."[/b]\n";
-						
+						// Steam Section
 						if($config['function']['clientstatus']['steamstatus'])
 						{
-							$desc .= "\n[center][size=12][b]━━━ 🎮 STEAM STATUS ━━━[/b][/size][/center]\n\n";
+							$desc .= "[center]═══════════════════════════[/center]\n";
+							$desc .= "[size=11][center][b]🎮 STEAM PROFILE 🎮[/b][/center][/size]\n";
+							$desc .= "[center]═══════════════════════════[/center]\n\n";
 							
 							$api = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=".$config['function']['clientstatus']['steamapi']."&steamids=".$number['steamid'];
 							$steamuser = json_decode(file_get_contents($api));
-							$steam_status = $steamuser->response->players[0]->personastate;
 							
-							switch($steam_status)
+							if(isset($steamuser->response->players[0]))
 							{
-								case 0: 
-									$steam_status = "🔴 [color=red][b]Offline[/b][/color]\n🕐 ".$language['clientstatus']['lastseen'].": [b]".date('Y-m-d G:i:s', $steamuser->response->players[0]->lastlogoff)."[/b]"; 
-									break;
-								case 1: 
-									$steam_status = "🟢 [color=green][b]Online[/b][/color]"; 
-									break;
-								case 2: 
-									$steam_status = "🟡 [color=blue][b]".$language['clientstatus']['busy']."[/b][/color]"; 
-									break;
-								case 3: 
-									$steam_status = "🟡 [color=blue][b]".$language['clientstatus']['away']."[/b][/color]"; 
-									break;
-								case 4: 
-									$steam_status = "🟡 [color=blue][b]".$language['clientstatus']['snooze']."[/b][/color]"; 
-									break;
-								case 5: 
-									$steam_status = "🔵 [color=blue][b]".$language['clientstatus']['lookingtotrade']."[/b][/color]"; 
-									break;
-								case 6: 
-									$steam_status = "🔵 [color=blue][b]".$language['clientstatus']['lookingtoplay']."[/b][/color]"; 
-									break;
-							}
-							
-							if(isset($steamuser->response->players[0]->gameextrainfo))
-							{
-								$gamename = $steamuser->response->players[0]->gameextrainfo;
-								$game = "🎮 [b]".$language['clientstatus']['currentlyplaying'].":[/b] [color=#4A90E2][b]".$gamename."[/b][/color]\n";
+								$steam_status = $steamuser->response->players[0]->personastate;
+								$nicksteam = $steamuser->response->players[0]->personaname;
+								$profilelink = $steamuser->response->players[0]->profileurl;
+								
+								$desc .= "   👤 Steam name: [URL=".$profilelink."][b]".$nicksteam."[/b][/URL]\n";
+								$desc .= "   💻 Status: ";
+								
+								switch($steam_status)
+								{
+									case 0: 
+										$desc .= "🔴 [color=red][b]Offline[/b][/color]\n";
+										if(isset($steamuser->response->players[0]->lastlogoff))
+										{
+											$desc .= "   🕐 Last online: [b]".date('Y-m-d H:i:s', $steamuser->response->players[0]->lastlogoff)."[/b]\n";
+										}
+										break;
+									case 1: 
+										$desc .= "🟢 [color=green][b]Online[/b][/color]\n"; 
+										break;
+									case 2: 
+										$desc .= "🟡 [color=#FFA500][b]Busy[/b][/color]\n"; 
+										break;
+									case 3: 
+										$desc .= "🟡 [color=#FFA500][b]Away[/b][/color]\n"; 
+										break;
+									case 4: 
+										$desc .= "💤 [color=#FFA500][b]Snooze[/b][/color]\n"; 
+										break;
+									case 5: 
+										$desc .= "🔵 [color=#4A90E2][b]Looking to Trade[/b][/color]\n"; 
+										break;
+									case 6: 
+										$desc .= "🔵 [color=#4A90E2][b]Looking to Play[/b][/color]\n"; 
+										break;
+								}
+								
+								// Game status
+								if(isset($steamuser->response->players[0]->gameextrainfo))
+								{
+									$gamename = $steamuser->response->players[0]->gameextrainfo;
+									$desc .= "   🎮 Currently playing: [color=#4A90E2][b]".$gamename."[/b][/color]\n";
+								}
+								else
+								{
+									$desc .= "   🎯 Not playing any game\n";
+								}
+								
+								$desc .= "\n[center][URL=".$profilelink."][b]🔗 View Steam Profile[/b][/URL][/center]\n";
 							}
 							else
 							{
-								$game = "🎯 [b]".$language['clientstatus']['curentlynotplaying']."[/b]\n";
+								$desc .= "[center][color=red][b]⚠️ Steam profile not found[/b][/color][/center]\n";
 							}
-							
-							$nicksteam = $steamuser->response->players[0]->personaname;
-							$profilelink = $steamuser->response->players[0]->profileurl;
-					
-							$desc .= "👤 [b]Steam Nick:[/b] [URL=".$profilelink."][b]".$nicksteam."[/b][/URL]\n";
-							$desc .= "💻 [b]Status:[/b] ".$steam_status."\n";
-							$desc .= $game;
-							$desc .= "\n[center][URL=".$profilelink."][size=10][b]🔗 View Steam Profile[/b][/size][/URL][/center]\n";
 						}
 						
-						$desc .= "[/size]\n";
-						$desc .= "[center][size=15][b]━━━━━━━━━━━━━━━━━━[/b][/size][/center]\n";
+						$desc .= "\n[center]═══════════════════════════[/center]\n";
+						$desc .= "[/size]";
 						$desc .= $footer;
 						
 						$tsAdmin->channelEdit($number['channel'], array('channel_description' => $desc));
