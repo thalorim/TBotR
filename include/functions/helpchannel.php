@@ -27,7 +27,7 @@ function helpchannel()
 	
 	$connect = mysqli_connect($config[4]['database']['host'], $config[4]['database']['login'], $config[4]['database']['password'], $config[4]['database']['dbname']);
 	
-	$commands = Array($commandcommand,'[b]!admin[/b] - wezwij admina', "[b]!msg_admins[/b] - zostaw wiadomość do administracji, jeśli nie ma jej aktualnie na serwerze",$commandgrouplist, '[b]!add [nr grupy][/b] - nadaj rangę, np. [b]!add 22[/b]', '[b]!del [nr grupy][/b] - zabierz rangę, np. [b]!del 22[/b]', "[b]!info[/b] - informacje o połączeniu");
+	$commands = Array($commandcommand,'[b]!admin[/b] - call admin', "[b]!msg_admins[/b] - leave message to admins if they are not currently on the server",$commandgrouplist, '[b]!add [group nr][/b] - add rank, e.g. [b]!add 22[/b]', '[b]!del [group nr][/b] - remove rank, e.g. [b]!del 22[/b]', "[b]!info[/b] - connection information");
 	foreach($commands as $command)
 	{
 		$number++;
@@ -185,7 +185,7 @@ function helpchannel()
 							}
 							else if($admincount == 0)
 							{
-								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Brak administracji na serwerze! Zostaw wiadomość korzystając z komendy !msg_admins[/b]");	
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]No admins on server! Leave a message using the command !msg_admins[/b]");	
 								return;
 							}
 							else if($admincount == 1)
@@ -238,7 +238,7 @@ function helpchannel()
 									$channel_info = $tsAdmin -> channelInfo($config['function']['helpchannel']['msgtoadminchannel']);
 									$channel_desc = $channel_info['data']['channel_description'];
 									$i = 1;
-									$desc = "[center][b][size=13][color=green]WIADOMOŚĆI DO ADMINISTRACJI[/color][/size][/b][/center]\n\n";
+									$desc = "[center][b][size=13][color=green]MESSAGES TO ADMINS[/color][/size][/b][/center]\n\n";
 					
 									$question = "SELECT * FROM problems WHERE DBID = ".$client['client_database_id'];	
 									$problems = mysqli_query($connect, $question);
@@ -251,7 +251,7 @@ function helpchannel()
 									}
 									else
 									{
-										$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Wysłałeś juz wiadomość[/b]");
+										$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]You already sent a message[/b]");
 									}
 							
 										if($config['function']['helpchannel']['msgtoadmindelete'])
@@ -265,11 +265,11 @@ function helpchannel()
 						
 									while($row=mysqli_fetch_array($problems))
 									{
-										$desc .= $i.". [b]Nick: [/b][URL=client://1/".$row['UID']."]".$row['nickname']."[/URL], [b]DBID:[/b] ".$row['DBID'].", [b]".date('H:i d.m.Y', $row['time'])."[/b]\n[b]Wiadomość:[/b] ".$row['problem']."[hr]\n";
+										$desc .= $i.". [b]Nick: [/b][URL=client://1/".$row['UID']."]".$row['nickname']."[/URL], [b]DBID:[/b] ".$row['DBID'].", [b]".date('H:i d.m.Y', $row['time'])."[/b]\n[b]Message:[/b] ".$row['problem']."[hr]\n";
 										$i++;
 									}
 									$tsAdmin -> channelEdit($config['function']['helpchannel']['msgtoadminchannel'], Array('CHANNEL_DESCRIPTION'=> $desc.$footer));
-									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Wysłano[/b]");
+									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Sent[/b]");
 								}
 								else
 								{
@@ -278,7 +278,7 @@ function helpchannel()
 							}
 							else
 							{
-								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Podaj wiadomość[/b]");
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "\n[b]Provide message[/b]");
 							}
 						}
 						else
@@ -362,7 +362,7 @@ function helpchannel()
 							if(in_array($config['function']['helpchannel']['servergroup'][$msg-1], $clientgroup))
 							{
 								$tsAdmin -> serverGroupDeleteClient($config['function']['helpchannel']['servergroup'][$msg-1], $client['client_database_id']);
-								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Usunięto z grupy[/b]");	
+								$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Removed from group[/b]");	
 							}
 						else 
 							{
@@ -433,12 +433,12 @@ function helpchannel()
 								if(!isset($checkgroup['data'][0]))
 								{
 									$tsAdmin -> channelGroupAddClient($config['function']['helpchannel']['bangroup'], $comm[2], $comm[1]);
-									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Zbanowano[/b]");
+									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Banned[/b]");
 									return;	
 								}
 								else
 								{
-									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Wybrany użytkownik posiada już na twoim kanale bana[/b]");
+									$tsAdmin -> sendMessage(1, $message['data']['invokerid'], "[b]Selected user is already banned on your channel[/b]");
 									$tsAdmin->gm('ada');
 									return;	
 								}

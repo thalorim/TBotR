@@ -23,7 +23,7 @@ while($config['control']['enable'])
 			{
 				$sheelsend = "./starter.sh restart".$i;
 				shell_exec($sheelsend);
-				$msg = date('H:i d.m.Y')." zresetowano ".$i." instancję\n";
+				$msg = date('H:i d.m.Y')." restarted instance ".$i."\n";
 				echo $msg;
 				$fo = fopen("include/logs/control.txt", "a");
 				fputs($fo, $msg);

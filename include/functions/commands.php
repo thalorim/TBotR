@@ -32,11 +32,11 @@
 				
 				if(strpos(strtoupper($msg), strtoupper("!msg_server")) !== false && $do == false)
 				{
-					$command = str_ireplace("!msg_server", "", $msg);
-					$serverInfo = $tsAdmin->getElement('data', $tsAdmin->serverInfo());
-					$tsAdmin -> sendMessage(3, $serverInfo['virtualserver_id'], $command);
-					$sendmsg = "Wysłano wiadomość: [b]".$command."[/b]";
-					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				$command = str_ireplace("!msg_server", "", $msg);
+				$serverInfo = $tsAdmin->getElement('data', $tsAdmin->serverInfo());
+				$tsAdmin -> sendMessage(3, $serverInfo['virtualserver_id'], $command);
+				$sendmsg = "Message sent: [b]".$command."[/b]";
+				$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					unset($serverInfo);
 					$do = true;
 				}
@@ -46,18 +46,18 @@
 				if(strpos(strtoupper($msg), strtoupper("!move_client")) !== false && $do == false)
 				{
 					$command = explode(" ", $msg);
-					if($command[2] == 'here')
-					{
-						$tsAdmin -> clientMove($command[1], $config[5]['bot']['channel']);
-						$sendmsg = "[b]Przeniesiono klienta[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
-					}
-					else if(is_numeric($command[2]))
-					{
-						$tsAdmin -> clientMove($command[1], $command[2]);
-						$sendmsg = "[b]Przeniesiono klienta[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
-					}
+				if($command[2] == 'here')
+				{
+					$tsAdmin -> clientMove($command[1], $config[5]['bot']['channel']);
+					$sendmsg = "[b]Client moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
+				else if(is_numeric($command[2]))
+				{
+					$tsAdmin -> clientMove($command[1], $command[2]);
+					$sendmsg = "[b]Client moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
 					$do = true;
 				}
 				
@@ -77,17 +77,17 @@
 							$client = $clientlist['data'][$client]['cid'];
 							$tsAdmin -> clientMove($message['data']['invokerid'], $client);
 						}
-						else
-						{
-							$sendmsg = "[b]Nie znaleziono użytkownika[/b]";
-							$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
-						}
-					}
 					else
 					{
-						$sendmsg = "[b]Podaj nazwę użytkownika[/b]";
+						$sendmsg = "[b]User not found[/b]";
 						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					}
+				}
+				else
+				{
+					$sendmsg = "[b]Provide username[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
 					$do = true;
 				}
 				
@@ -108,27 +108,27 @@
 									$tsAdmin -> clientMove($client['clid'], $config[5]['bot']['channel']);
 								}
 								
-							}
-						}	
-						$sendmsg = "[b]Przeniesiono użytkowników[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
-					}
-					else if(is_numeric($command[1]))
+						}
+					}	
+					$sendmsg = "[b]Users moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
+				else if(is_numeric($command[1]))
+				{
+					$user = $tsAdmin->clientList("-uid -away -voice -times -groups -info -icon -country -ip -badges");
+					foreach($user['data'] as $client)
 					{
-						$user = $tsAdmin->clientList("-uid -away -voice -times -groups -info -icon -country -ip -badges");
-						foreach($user['data'] as $client)
+						if($client['client_database_id'] != 1)
 						{
-							if($client['client_database_id'] != 1)
+							if($client['clid'] != $message['data']['invokerid'])
 							{
-								if($client['clid'] != $message['data']['invokerid'])
-								{
-									$tsAdmin -> clientMove($client['clid'], $command[1]);
-								}
+								$tsAdmin -> clientMove($client['clid'], $command[1]);
 							}
 						}
-						$sendmsg = "[b]Przeniesiono użytkowników[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					}
+					$sendmsg = "[b]Users moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
 					$do = true;
 				}
 				
@@ -151,35 +151,35 @@
 									{
 										$tsAdmin -> clientMove($nick_array['data'][0]['clid'], $config[5]['bot']['channel']);
 									}
-								}
 							}
 						}
-						$sendmsg = "[b]Przeniesiono administratorów[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					}
-					else if(is_numeric($command[1]))
+					$sendmsg = "[b]Admins moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
+				else if(is_numeric($command[1]))
+				{
+					foreach($config[5]['bot']['admins_group'] as $group)
 					{
-						foreach($config[5]['bot']['admins_group'] as $group)
+						$groupclients = $tsAdmin->serverGroupClientList($group, $names = true);
+						foreach($groupclients['data'] as $client)
 						{
-							$groupclients = $tsAdmin->serverGroupClientList($group, $names = true);
-							foreach($groupclients['data'] as $client)
+							$nick_array = $tsAdmin->clientFind($client['client_nickname']);
+							if($nick_array['data'])
 							{
-								$nick_array = $tsAdmin->clientFind($client['client_nickname']);
-								if($nick_array['data'])
+								if($client['client_nickname'] == $nick_array['data'][0]['client_nickname'])
 								{
-									if($client['client_nickname'] == $nick_array['data'][0]['client_nickname'])
+									if($nick_array['data'][0]['clid'] != $message['data']['invokerid'])
 									{
-										if($nick_array['data'][0]['clid'] != $message['data']['invokerid'])
-										{
-											$tsAdmin -> clientMove($nick_array['data'][0]['clid'], $command[1]);
-										}
+										$tsAdmin -> clientMove($nick_array['data'][0]['clid'], $command[1]);
 									}
 								}
 							}
 						}
-						$sendmsg = "[b]Przeniesiono administratorów[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					}
+					$sendmsg = "[b]Admins moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
 					$do = true;
 				}
 				
@@ -199,8 +199,8 @@
 							}
 						}
 					}
-					$sendmsg = "[b]Zaczepiono użytkowników[/b]";
-					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				$sendmsg = "[b]Users poked[/b]";
+				$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					$do = true;
 				}
 				
@@ -220,8 +220,8 @@
 							}
 						}
 					}
-					$sendmsg = "Wysłano wiadomość: [b]".$command."[/b]";
-					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				$sendmsg = "Message sent: [b]".$command."[/b]";
+				$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					$do = true;
 				}
 				
@@ -245,26 +245,26 @@
 								}
 							}
 						}
-						$sendmsg = "[b]Przeniesiono[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
-					}
-					else if(is_numeric($command[1]))
+					$sendmsg = "[b]Moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
+				else if(is_numeric($command[1]))
+				{
+					$groupclients = $tsAdmin->serverGroupClientList($command[1], $names = true);
+					foreach($groupclients['data'] as $client)
 					{
-						$groupclients = $tsAdmin->serverGroupClientList($command[1], $names = true);
-						foreach($groupclients['data'] as $client)
+						$nick_array = $tsAdmin->clientFind($client['client_nickname']);
+						if($nick_array['data'])
 						{
-							$nick_array = $tsAdmin->clientFind($client['client_nickname']);
-							if($nick_array['data'])
+							if($nick_array['data'][0]['clid'] != $message['data']['invokerid'])
 							{
-								if($nick_array['data'][0]['clid'] != $message['data']['invokerid'])
-								{
-									$tsAdmin -> clientMove($nick_array['data'][0]['clid'], $command[2]);
-								}
+								$tsAdmin -> clientMove($nick_array['data'][0]['clid'], $command[2]);
 							}
 						}
-						$sendmsg = "[b]Przeniesiono[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					}
+					$sendmsg = "[b]Moved[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+				}
 					$do = true;
 				}
 				
@@ -301,10 +301,10 @@
 								$clients_offline++;
 							}
 							
-						}
-						$all_clients = $clients_offline + $clients_online;
-						$sendmsg = "\n[b]Online: ".$clients_online."\nOffline: ".$clients_offline."\nŁącznie: ".$all_clients."[/b]";
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
+					}
+					$all_clients = $clients_offline + $clients_online;
+					$sendmsg = "\n[b]Online: ".$clients_online."\nOffline: ".$clients_offline."\nTotal: ".$all_clients."[/b]";
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $sendmsg);
 					}
 					unset($user);
 					$do = true;
@@ -316,15 +316,15 @@
 				{
 					$command = explode(" ", $msg);
 					
-					if(isset($command[1]) && isset($command[2]) && isset($command[3]))
-					{
-						$tsAdmin -> banAddByUid($command[1], $command[2], $command[3]);
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Zbanowano");
-					}
-					else
-					{
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Podaj poprawne dane");
-					}
+				if(isset($command[1]) && isset($command[2]) && isset($command[3]))
+				{
+					$tsAdmin -> banAddByUid($command[1], $command[2], $command[3]);
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Banned");
+				}
+				else
+				{
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Provide correct data");
+				}
 					$do = true;
 				}
 				
@@ -334,49 +334,49 @@
 				{
 					$command = explode(" ", $msg);
 					
-					if(isset($command[1]))
-					{
-						$tsAdmin -> banDelete($command[1]);
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Odbanowano");
-					}
-					else
-					{
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Podaj poprawne dane");
-					}
+				if(isset($command[1]))
+				{
+					$tsAdmin -> banDelete($command[1]);
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Unbanned");
+				}
+				else
+				{
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "Provide correct data");
+				}
 					$do = true;
 				}
 				
 				//bot refresh
 				if(strpos(strtoupper($msg), strtoupper("!refresh")) !== false && $do == false)
 				{
-					if(strpos(strtoupper($msg), strtoupper("!refresh 1")) !== false)
-					{
-						shell_exec('./starter.sh restart1');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zresetowano 1 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!refresh 2")) !== false)
-					{
-						shell_exec('./starter.sh restart2');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zresetowano 2 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!refresh 3")) !== false)
-					{
-						shell_exec('./starter.sh restart3');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zresetowano 3 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!refresh 4")) !== false)
-					{
-						shell_exec('./starter.sh restart4');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zresetowano 4 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!refresh all")) !== false)
-					{
-						shell_exec('./starter.sh restart1');
-						shell_exec('./starter.sh restart2');
-						shell_exec('./starter.sh restart3');
-						shell_exec('./starter.sh restart4');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]resetowano bota[/b]");
-					}
+				if(strpos(strtoupper($msg), strtoupper("!refresh 1")) !== false)
+				{
+					shell_exec('./starter.sh restart1');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 1 restarted[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!refresh 2")) !== false)
+				{
+					shell_exec('./starter.sh restart2');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 2 restarted[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!refresh 3")) !== false)
+				{
+					shell_exec('./starter.sh restart3');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 3 restarted[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!refresh 4")) !== false)
+				{
+					shell_exec('./starter.sh restart4');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 4 restarted[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!refresh all")) !== false)
+				{
+					shell_exec('./starter.sh restart1');
+					shell_exec('./starter.sh restart2');
+					shell_exec('./starter.sh restart3');
+					shell_exec('./starter.sh restart4');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Bot restarted[/b]");
+				}
 					
 					$do = true;
 				}
@@ -384,34 +384,34 @@
 				//bot stop
 				if(strpos(strtoupper($msg), strtoupper("!stop")) !== false && $do == false)
 				{
-					if(strpos(strtoupper($msg), strtoupper("!stop 1")) !== false)
-					{
-						shell_exec('./starter.sh stop1');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zatrzymano 1 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!stop 2")) !== false)
-					{
-						shell_exec('./starter.sh stop2');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zatrzymano 2 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!stop 3")) !== false)
-					{
-						shell_exec('./starter.sh stop3');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zatrzymano 3 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!stop 4")) !== false)
-					{
-						shell_exec('./starter.sh stop4');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zatrzymano 4 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!stop all")) !== false)
-					{
-						shell_exec('./starter.sh stop1');
-						shell_exec('./starter.sh stop2');
-						shell_exec('./starter.sh stop3');
-						shell_exec('./starter.sh stop4');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Zatrzymano bota[/b]");
-					}
+				if(strpos(strtoupper($msg), strtoupper("!stop 1")) !== false)
+				{
+					shell_exec('./starter.sh stop1');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 1 stopped[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!stop 2")) !== false)
+				{
+					shell_exec('./starter.sh stop2');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 2 stopped[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!stop 3")) !== false)
+				{
+					shell_exec('./starter.sh stop3');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 3 stopped[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!stop 4")) !== false)
+				{
+					shell_exec('./starter.sh stop4');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 4 stopped[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!stop all")) !== false)
+				{
+					shell_exec('./starter.sh stop1');
+					shell_exec('./starter.sh stop2');
+					shell_exec('./starter.sh stop3');
+					shell_exec('./starter.sh stop4');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Bot stopped[/b]");
+				}
 					
 					$do = true;
 				}
@@ -419,34 +419,34 @@
 				//bot start
 				if(strpos(strtoupper($msg), strtoupper("!start")) !== false && $do == false)
 				{
-					if(strpos(strtoupper($msg), strtoupper("!start 1")) !== false)
-					{
-						shell_exec('./starter.sh start1');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Włączono 1 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!start 2")) !== false)
-					{
-						shell_exec('./starter.sh start2');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Włączono 2 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!start 3")) !== false)
-					{
-						shell_exec('./starter.sh start3');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Włączono 3 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!start 4")) !== false)
-					{
-						shell_exec('./starter.sh start4');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Włączono 4 instancję[/b]");
-					}
-					else if(strpos(strtoupper($msg), strtoupper("!start all")) !== false)
-					{
-						shell_exec('./starter.sh start1');
-						shell_exec('./starter.sh start2');
-						shell_exec('./starter.sh start3');
-						shell_exec('./starter.sh start4');
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Włączono bota[/b]");
-					}
+				if(strpos(strtoupper($msg), strtoupper("!start 1")) !== false)
+				{
+					shell_exec('./starter.sh start1');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 1 started[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!start 2")) !== false)
+				{
+					shell_exec('./starter.sh start2');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 2 started[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!start 3")) !== false)
+				{
+					shell_exec('./starter.sh start3');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 3 started[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!start 4")) !== false)
+				{
+					shell_exec('./starter.sh start4');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Instance 4 started[/b]");
+				}
+				else if(strpos(strtoupper($msg), strtoupper("!start all")) !== false)
+				{
+					shell_exec('./starter.sh start1');
+					shell_exec('./starter.sh start2');
+					shell_exec('./starter.sh start3');
+					shell_exec('./starter.sh start4');
+					$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Bot started[/b]");
+				}
 					
 					$do = true;
 				}
@@ -460,11 +460,11 @@
 						$msg = str_ireplace(" ", "", $msg);
 						$connect = mysqli_connect($config[4]['database']['host'], $config[4]['database']['login'], $config[4]['database']['password'], $config[4]['database']['dbname']);
 						if(is_int((int)$msg) && $msg != "")
-						{	
+						{
 							if($msg >= 1 && $msg <= $config['function']['helpchannel']['msgtoadminmax'])
 							{
 								$connect = mysqli_connect($config[4]['database']['host'], $config[4]['database']['login'], $config[4]['database']['password'], $config[4]['database']['dbname']);
-								$desc = "[center][b][size=13][color=green]WIADOMOŚĆI DO ADMINISTRACJI[/color][/size][/b][/center]\n\n";
+								$desc = "[center][b][size=13][color=green]MESSAGES TO ADMINS[/color][/size][/b][/center]\n\n";
 								$question = "DELETE FROM problems WHERE number = ".$msg;
 								mysqli_query($connect, $question);
 								
@@ -477,18 +477,18 @@
 								$i = 1;	
 								while($row=mysqli_fetch_array($problems))
 								{
-									$desc .= $i.". [b]Nick: [/b][URL=client://1/".$row['UID']."]".$row['nickname']."[/URL], [b]DBID:[/b] ".$row['DBID'].", [b]".date('H:i d.m.Y', $row['time'])."[/b]\n[b]Wiadomość:[/b] ".$row['problem']."[hr]\n";
+									$desc .= $i.". [b]Nick: [/b][URL=client://1/".$row['UID']."]".$row['nickname']."[/URL], [b]DBID:[/b] ".$row['DBID'].", [b]".date('H:i d.m.Y', $row['time'])."[/b]\n[b]Message:[/b] ".$row['problem']."[hr]\n";
 									$i++;
 								}
 								$tsAdmin -> channelEdit($config['function']['helpchannel']['msgtoadminchannel'], Array('CHANNEL_DESCRIPTION'=> $desc.$footer));
-								$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Usunięto ".$msg." wiadomość[/b]");
+								$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Message ".$msg." deleted[/b]");
 							} 
 						}
 						mysqli_close($connect);
 					}
 					else
 					{
-						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Wiadomości do administracji wyłączone[/b]");
+						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], "[b]Messages to admins disabled[/b]");
 					}
 					$do = true;
 				} 
@@ -598,7 +598,7 @@
 							$key++;
 							$data = "\n";
 						$client_info = $tsAdmin ->clientDbInfo($in['cldbid']);
-						$data .= $key.".\n	Id kanału: ".$in['cid']."\n	User: [URL=client://1/".$client_info['data']['client_unique_identifier']."]".$client_info['data']['client_nickname']."[/URL] [".$client_info['data']['client_database_id']."]\n	Id grupy: ".$in['cgid']."\n";
+						$data .= $key.".\n	Channel ID: ".$in['cid']."\n	User: [URL=client://1/".$client_info['data']['client_unique_identifier']."]".$client_info['data']['client_nickname']."[/URL] [".$client_info['data']['client_database_id']."]\n	Group ID: ".$in['cgid']."\n";
 						$tsAdmin -> sendMessage(2, $config[5]['bot']['channel'], $data);
 						}
 					}
@@ -609,55 +609,55 @@
 	
 	
 	/* 
-		[b]Wiadomość na serwer[/b]
+		[b]Message to server[/b]
 		!msg_server [message]
 		
-		[b]Przeniesienie klienta[/b]
+		[b]Move client[/b]
 		!move_client [clientid] [channelid]
 		
-		[b]Przeniesienie do klienta[/b]
+		[b]Move to client[/b]
 		!move_to[nick]
 		
-		[b]Przeniesienie wszystkich[/b]
+		[b]Move all clients[/b]
 		!meeting_clients [clientid] [channelid]
 		
-		[b]Przeniesienie adminów[/b]
+		[b]Move admins[/b]
 		!meeting_admins [channelid]
 		
-		[b]Poke do wszystkich[/b]
+		[b]Poke all[/b]
 		!poke [message]
 		
-		[b]Wiadomość do wszystkich[/b]
+		[b]Message to all[/b]
 		!message [message]
 		
-		[b]Przeniesienie danej grupy[/b]
+		[b]Move specific group[/b]
 		!meeting_group [groupid] [channelid]
 		
-		[b]Liczenie osób z danej grupy[/b]
+		[b]Count users in group[/b]
 		!cgroup [groupid]
 		
-		[b]Lista użytkowników grupy kanałowej[/b]
+		[b]Channel group users list[/b]
 		!cgcl ([cid], [cldbid], [cgid]) [number]
 		
-		[b]Zbanowanie[/b]
+		[b]Ban[/b]
 		!addban [uniqueid] [time] [reason]
 		
-		[b]Odbanowanie[/b]
+		[b]Unban[/b]
 		!delban [banid]
 		
-		[b]Reset bota[/b]
+		[b]Restart bot[/b]
 		!refresh [instance (or all)]
 		
-		[b]Zatrzymanie bota[/b]
+		[b]Stop bot[/b]
 		!stop [instance (or all)]
 		
-		[b]Włączenie bota[/b]
+		[b]Start bot[/b]
 		!start [instance (or all)]
 		
-		[b]Usuwanie wiadomości[/b]
+		[b]Delete message[/b]
 		!del_msg [number]
 		
-		[b]Logi[/b]
+		[b]Logs[/b]
 		!log [lines (1-100)] 
 	*/
 ?>
